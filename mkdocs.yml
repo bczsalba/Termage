@@ -1,0 +1,47 @@
+site_name: docs::Termage
+
+theme:
+  name: material
+  font:
+    text: Open Sans
+
+  features:
+  - content.code.annotate
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: purple
+      accent: orange
+      toggle:
+        icon: material/lightbulb
+        name: Switch to light mode
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep-purple
+      accent: yellow
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to dark mode
+
+plugins:
+  - search
+  - termage
+
+repo_url: https://github.com/bczsalba/mkdocs-termage-plugin
+repo_name: bczsalba/mkdocs-termage
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - Introduction: index.md
+  - "Syntax & options": options.md
+  - "termage-svg": termage_svg.md
+  - Implementation details: implementation.md
