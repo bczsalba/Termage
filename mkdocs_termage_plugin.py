@@ -52,8 +52,8 @@ class TermagePlugin(BasePlugin):
         """
 
         opt_dict = {
-            "width": ptg.terminal.width,
-            "height": ptg.terminal.height,
+            "width": 80,
+            "height": 20,
             "tabs": ("Python", "Output"),
             "foreground": "#dddddd",
             "background": "#212121",
@@ -65,7 +65,11 @@ class TermagePlugin(BasePlugin):
             if len(option) == 0:
                 continue
 
-            key, value = option.split("=")
+            try:
+                key, value = option.split("=")
+            except ValueError as error:
+                raise ValueError(f"Invalid key=value pair {option!r}.") from error
+
             value = value.replace("\\", "")
 
             if key not in opt_dict:
@@ -127,7 +131,7 @@ class TermagePlugin(BasePlugin):
     def _replace_codeblock(self, matchobj) -> str:
         """Replaces a codeblock with the Termage content."""
 
-        indent, options, code = matchobj.groups()
+        indent, svg_only, options, code = matchobj.groups()
 
         if indent.endswith("\\"):
             indent = indent.replace("\\", "")
@@ -178,6 +182,9 @@ class TermagePlugin(BasePlugin):
         recording.save_svg(str(Path("docs") / path), title=title)
 
         code_indent = (len(indent) + 4) * " "
+
+        if svg_only:
+            return f"{indent}![]({path})"
 
         template = ""
         for line in OUTPUT_BLOCK_TEMPLATE.splitlines():
