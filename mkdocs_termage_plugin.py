@@ -1,11 +1,11 @@
 from __future__ import annotations
 
 import re
+import builtins
+from io import StringIO
+from pathlib import Path
 
 from mkdocs.plugins import BasePlugin
-
-import builtins
-from pathlib import Path
 
 import pytermgui as ptg
 
@@ -28,7 +28,7 @@ OUTPUT_SVG_TEMPLATE = "{indent}![{alt}]({path}){{ align=center }}"
 def _get_terminal_from_opts(width: int, height: int) -> ptg.Terminal:
     """Creates a terminal with the size options."""
 
-    return ptg.Terminal(size=(width, height))
+    return ptg.Terminal(stream=StringIO(), size=(width, height))
 
 
 def _find_indent(line: str) -> int:
@@ -41,7 +41,11 @@ ptg.WindowManager.autorun = False
 
 
 class TermagePlugin(BasePlugin):
+    """The Termage plugin class."""
+
     def __init__(self, *args, **kwargs) -> None:
+        """Initializes the plugin."""
+
         super().__init__(*args, **kwargs)
 
         self._svg_count = 0
@@ -205,6 +209,8 @@ class TermagePlugin(BasePlugin):
         return block
 
     def on_page_markdown(self, markdown, page, files, config) -> str:
+        """Replaces the termage markdown syntax."""
+
         subbed = RE_BLOCK.sub(self._replace_codeblock, markdown)
 
         return subbed
