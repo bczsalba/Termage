@@ -9,7 +9,7 @@ from pathlib import Path
 
 import pytermgui as ptg
 
-RE_BLOCK = re.compile(r"([^\n]*)\`\`\`termage(.*?)\n([\s\S]*?)\`\`\`")
+RE_BLOCK = re.compile(r"([^\n]*)\`\`\`termage(-svg)?(.*?)\n([\s\S]*?)\`\`\`")
 
 OUTPUT_BLOCK_TEMPLATE = """
 === "{code_tab_name}"
@@ -83,7 +83,9 @@ class TermagePlugin(BasePlugin):
 
         return opt_dict
 
-    def _handle_options(self, options: str) -> tuple[ptg.Terminal, str, str | None]:
+    def _handle_options(
+        self, options: str, indent: str
+    ) -> tuple[ptg.Terminal, str, str | None]:
         """Handles the options provided within the code block.
 
         Returns:
@@ -96,7 +98,10 @@ class TermagePlugin(BasePlugin):
         include = None
         if opt_dict["include"] is not None:
             with open(opt_dict["include"], "r", encoding="utf-8") as include_file:
-                include = include_file.read()
+                include = ""
+
+                for line in include_file.readlines():
+                    include += f"{indent}{line}"
 
         terminal = _get_terminal_from_opts(opt_dict["width"], opt_dict["height"])
 
@@ -130,7 +135,7 @@ class TermagePlugin(BasePlugin):
 {indent}```termage {options}
 {code}```"""
 
-        terminal, title, (tab1, tab2), include = self._handle_options(options)
+        terminal, title, (tab1, tab2), include = self._handle_options(options, indent)
 
         if include is not None:
             code = include + code
@@ -151,7 +156,7 @@ class TermagePlugin(BasePlugin):
 
         with terminal.record() as recording:
             for line in lines:
-                line = line.lstrip(indent)
+                line = line[len(indent) :]
 
                 if line.startswith("&"):
                     line = line.replace("&", "", 1)
@@ -172,14 +177,15 @@ class TermagePlugin(BasePlugin):
         path = self._get_next_path()
         recording.save_svg(str(Path("docs") / path), title=title)
 
+        code_indent = (len(indent) + 4) * " "
+
         template = ""
         for line in OUTPUT_BLOCK_TEMPLATE.splitlines():
-            if line not in ("{code}", "{svg}"):
+            if line not in ("{code}", "{svg}{{ align=center }}"):
                 line = indent + line
 
             template += line + "\n"
 
-        code_indent = indent * 2 or "    "
         block = template.format(
             code_tab_name=tab1,
             svg_tab_name=tab2,
