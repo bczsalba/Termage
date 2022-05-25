@@ -8,8 +8,6 @@ import builtins
 from pathlib import Path
 
 import pytermgui as ptg
-from pytermgui.pretty import print
-from pytermgui.terminal import Terminal
 
 RE_BLOCK = re.compile(r"([^\n]*)\`\`\`termage(.*?)\n([\s\S]*?)\`\`\`")
 
@@ -46,7 +44,8 @@ class TermagePlugin(BasePlugin):
 
         self._svg_count = 0
 
-    def _parse_options(self, options: str) -> dict[str, int | str]:
+    @staticmethod
+    def _parse_options(options: str) -> dict[str, int | str]:
         """Parses option strings.
 
         Each option follows the pattern `key=value`. Spaces are only allowed when escaped.
@@ -96,7 +95,7 @@ class TermagePlugin(BasePlugin):
 
         include = None
         if opt_dict["include"] is not None:
-            with open(opt_dict["include"], "r") as include_file:
+            with open(opt_dict["include"], "r", encoding="utf-8") as include_file:
                 include = include_file.read()
 
         terminal = _get_terminal_from_opts(opt_dict["width"], opt_dict["height"])
@@ -125,8 +124,6 @@ class TermagePlugin(BasePlugin):
 
         indent, options, code = matchobj.groups()
 
-        start, end = matchobj.span()
-
         terminal, title, (tab1, tab2), include = self._handle_options(options)
 
         if include is not None:
@@ -135,9 +132,6 @@ class TermagePlugin(BasePlugin):
         buffer = ""
         code_filtered = []
 
-        lines = code.splitlines()
-        first_line_indent = max(_find_indent(lines[0]), 4)
-
         exec_globals = {
             "__name__": "__main__",
             "__doc__": None,
@@ -145,6 +139,8 @@ class TermagePlugin(BasePlugin):
             "__annotations__": {},
             "__builtins__": builtins,
         }
+
+        lines = code.splitlines()
 
         with terminal.record() as recording:
             for line in lines:
@@ -171,7 +167,7 @@ class TermagePlugin(BasePlugin):
 
         template = ""
         for line in OUTPUT_BLOCK_TEMPLATE.splitlines():
-            if line != "{code}" and line != "{svg}":
+            if line not in ("{code}", "{svg}"):
                 line = indent + line
 
             template += line + "\n"
