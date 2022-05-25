@@ -19,7 +19,7 @@ OUTPUT_BLOCK_TEMPLATE = """
     ```
 
 === "{svg_tab_name}"
-{svg}
+{svg}{{ align=center }}
 """
 
 
@@ -124,6 +124,12 @@ class TermagePlugin(BasePlugin):
 
         indent, options, code = matchobj.groups()
 
+        if indent.endswith("\\"):
+            indent = indent.replace("\\", "")
+            return f"""\
+{indent}```termage {options}
+{code}```"""
+
         terminal, title, (tab1, tab2), include = self._handle_options(options)
 
         if include is not None:
@@ -138,6 +144,7 @@ class TermagePlugin(BasePlugin):
             "__package__": None,
             "__annotations__": {},
             "__builtins__": builtins,
+            "print": ptg.tim.print,
         }
 
         lines = code.splitlines()
