@@ -4,21 +4,23 @@ import re
 
 from mkdocs.plugins import BasePlugin
 
+import builtins
 from pathlib import Path
 
 import pytermgui as ptg
 from pytermgui.pretty import print
 from pytermgui.terminal import Terminal
 
-RE_BLOCK = re.compile(r"(\`\`\`termage(.*?)\n([\s\S]*?)\`\`\`)")
+RE_BLOCK = re.compile(r"([^\n]*)\`\`\`termage(.*?)\n([\s\S]*?)\`\`\`")
 
-OUTPUT_BLOCK_TEMPLATE = """\
-=== "Python"
+OUTPUT_BLOCK_TEMPLATE = """
+=== "{code_tab_name}"
+
     ```py
 {code}
     ```
 
-=== "Output"
+=== "{svg_tab_name}"
 {svg}
 """
 
@@ -53,6 +55,7 @@ class TermagePlugin(BasePlugin):
         opt_dict = {
             "width": ptg.terminal.width,
             "height": ptg.terminal.height,
+            "tabs": ("Python", "Output"),
             "foreground": "#dddddd",
             "background": "#212121",
             "title": "",
@@ -73,6 +76,10 @@ class TermagePlugin(BasePlugin):
 
             if value.isdigit():
                 value = int(value)
+
+            elif isinstance(opt_dict[key], tuple):
+                value = tuple(value.split(","))
+
             opt_dict[key] = value
 
         return opt_dict
@@ -104,7 +111,7 @@ class TermagePlugin(BasePlugin):
             opt_dict["background"], is_background=True
         )
 
-        return terminal, opt_dict["title"], include
+        return terminal, opt_dict["title"], opt_dict["tabs"], include
 
     def _get_next_path(self) -> str:
         """Gets the next SVG path."""
@@ -116,10 +123,11 @@ class TermagePlugin(BasePlugin):
     def _replace_codeblock(self, matchobj) -> str:
         """Replaces a codeblock with the Termage content."""
 
-        full, options, code = matchobj.groups()
+        indent, options, code = matchobj.groups()
+
         start, end = matchobj.span()
 
-        terminal, title, include = self._handle_options(options)
+        terminal, title, (tab1, tab2), include = self._handle_options(options)
 
         if include is not None:
             code = include + code
@@ -130,12 +138,20 @@ class TermagePlugin(BasePlugin):
         lines = code.splitlines()
         first_line_indent = max(_find_indent(lines[0]), 4)
 
-        exec_globals = {}
+        exec_globals = {
+            "__name__": "__main__",
+            "__doc__": None,
+            "__package__": None,
+            "__annotations__": {},
+            "__builtins__": builtins,
+        }
 
         with terminal.record() as recording:
             for line in lines:
-                if line.startswith("@"):
-                    line = line.replace("@", " ", 1)
+                line = line.lstrip(indent)
+
+                if line.startswith("&"):
+                    line = line.replace("&", "", 1)
                 else:
                     code_filtered.append(line)
 
@@ -153,13 +169,25 @@ class TermagePlugin(BasePlugin):
         path = self._get_next_path()
         recording.save_svg(str(Path("docs") / path), title=title)
 
-        indent = first_line_indent * " "
-        code_indented = indent + f"\n{indent}".join(code_filtered)
+        template = ""
+        for line in OUTPUT_BLOCK_TEMPLATE.splitlines():
+            if line != "{code}" and line != "{svg}":
+                line = indent + line
 
-        return OUTPUT_BLOCK_TEMPLATE.format(
-            code=code_indented, svg=f"{indent}![]({path})"
+            template += line + "\n"
+
+        code_indent = indent * 2 or "    "
+        block = template.format(
+            code_tab_name=tab1,
+            svg_tab_name=tab2,
+            code="\n".join(code_indent + line for line in code_filtered),
+            svg=f"{code_indent}![]({path})",
         )
 
-    def on_page_markdown(self, markdown, page, files, config) -> str:
+        return block
 
-        return RE_BLOCK.sub(self._replace_codeblock, markdown)
+    def on_page_markdown(self, markdown, page, files, config) -> str:
+        subbed = RE_BLOCK.sub(self._replace_codeblock, markdown)
+        builtins.print(subbed)
+
+        return subbed
