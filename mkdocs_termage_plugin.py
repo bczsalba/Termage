@@ -22,6 +22,8 @@ OUTPUT_BLOCK_TEMPLATE = """
 {svg}{{ align=center }}
 """
 
+OUTPUT_SVG_TEMPLATE = "{indent}![{alt}]({path}){{ align=center }}"
+
 
 def _get_terminal_from_opts(width: int, height: int) -> ptg.Terminal:
     """Creates a terminal with the size options."""
@@ -184,7 +186,7 @@ class TermagePlugin(BasePlugin):
         code_indent = (len(indent) + 4) * " "
 
         if svg_only:
-            return f"{indent}![]({path})"
+            return OUTPUT_SVG_TEMPLATE.format(indent=indent, alt=title, path=path)
 
         template = ""
         for line in OUTPUT_BLOCK_TEMPLATE.splitlines():
@@ -204,6 +206,5 @@ class TermagePlugin(BasePlugin):
 
     def on_page_markdown(self, markdown, page, files, config) -> str:
         subbed = RE_BLOCK.sub(self._replace_codeblock, markdown)
-        builtins.print(subbed)
 
         return subbed
