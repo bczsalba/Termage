@@ -9,6 +9,8 @@ from mkdocs.plugins import BasePlugin
 
 import pytermgui as ptg
 
+__version__ = "0.1.0"
+
 RE_BLOCK = re.compile(r"([^\n]*)\`\`\`termage(-svg)?(.*?)\n([\s\S]*?)\`\`\`")
 
 OUTPUT_BLOCK_TEMPLATE = """

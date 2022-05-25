@@ -1,21 +1,20 @@
 from setuptools import setup, find_packages
 
-import pytermgui
+import mkdocs_termage_plugin as termage
 
 setup(
     name="mkdocs-termage-plugin",
-    version=pytermgui.__version__,
+    version=termage.__version__,
     packages=find_packages(),
     license="MIT",
     description="",
-    # long_description=open("README.md").read(),
+    long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    install_requires=[],
+    install_requires=["pytermgui>=6.2.1"],
     python_requires=">=3.7.0",
-    url="https://github.com/bczsalba/mkdocs-termage",
+    url="https://github.com/bczsalba/mkdocs-termage-plugin",
     author="BcZsalba",
     author_email="bczsalba@gmail.com",
-    # entry_points={"console_scripts": ["ptg = pytermgui.cmd:main"]},
     entry_points={
         "mkdocs.plugins": [
             "termage = mkdocs_termage_plugin:TermagePlugin",
