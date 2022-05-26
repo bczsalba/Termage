@@ -9,7 +9,7 @@
 
 
 ```termage height=10 width=60
-from pytermgui import highlight_python
+from pytermgui import highlight_python, tim
 
 code = """
 while True:
@@ -22,7 +22,7 @@ while True:
 
 """
 
-print(highlight_python(code))
+tim.print(highlight_python(code))
 ```
 
 
@@ -48,3 +48,13 @@ plugins:
 
 !!! warning
     Termage should be loaded before any other markdown pre-processor plugins, to avoid conflicts while formatting.
+
+Additionally, you need to make sure some markdown extensions are enabled:
+
+```yaml title="mkdocs.yml"
+markdown_extensions:
+  - attr_list
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+```

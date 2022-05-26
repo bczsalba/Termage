@@ -5,17 +5,17 @@
 === "`termage`"
 
     ```termage-svg title=mkdocs_termage_plugin.py height=10
-    from mkdocs_termage_plugin import OUTPUT_BLOCK_TEMPLATE
+    from termage.mkdocs_plugin import OUTPUT_BLOCK_TEMPLATE
     from pytermgui import highlight_python, tim
 
-    print(highlight_python(f'OUTPUT_BLOCK_TEMPLATE = """{OUTPUT_BLOCK_TEMPLATE}"""'))
+    tim.print(highlight_python(f'OUTPUT_BLOCK_TEMPLATE = """{OUTPUT_BLOCK_TEMPLATE}"""'))
     ```
 
 === "`termage-svg`"
 
     ```termage-svg title=mkdocs_termage_plugin.py height=10
-    from mkdocs_termage_plugin import OUTPUT_SVG_TEMPLATE
-    from pytermgui import highlight_python
+    from termage.mkdocs_plugin import OUTPUT_SVG_TEMPLATE
+    from pytermgui import highlight_python, tim
 
-    print(highlight_python(f'OUTPUT_SVG_TEMPLATE = "{OUTPUT_SVG_TEMPLATE}"'))
+    tim.print(highlight_python(f'OUTPUT_SVG_TEMPLATE = "{OUTPUT_SVG_TEMPLATE}"'))
     ```
