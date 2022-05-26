@@ -471,6 +471,13 @@
 <p class="admonition-title">Warning</p>
 <p>Termage should be loaded before any other markdown pre-processor plugins, to avoid conflicts while formatting.</p>
 </div>
+<p>Additionally, you need to make sure some markdown extensions are enabled:</p>
+<div class="highlight"><span class="filename">mkdocs.yml</span><pre><span></span><code><span class="nt">markdown_extensions</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">attr_list</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.tabbed</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">alternate_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</code></pre></div>
 
 <!-- Source file information -->
 

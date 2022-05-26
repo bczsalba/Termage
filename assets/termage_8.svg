@@ -5,7 +5,6 @@
         text {
             font-size: 15px;
             font-family: Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
-            alignment-baseline: text-after-edge;
         }
 
         .ptg-title {
@@ -25,6 +24,6 @@
     <circle cx="105" cy="35" r="6" fill="#28c941"/>
     <text x="422.0" y="38.975" text-anchor="middle"
         class="ptg-title"></text>
-<g transform='translate(70, 55)' ><rect x='0.0' y='-3.2257500000000006' fill='#dddddd' width='47.43' height='18.975' ></rect><text x='0.0' y='15.0' textLength='46.5'  class='ptg-ptg0'>Hello</text></g>
+<g transform='translate(70, 55)' ><rect x='0.0' y='-3.23' fill='#dddddd' width='47.43' height='18.98' ></rect><text dy='-0.25em' x='0.0' y='15.0' textLength='46.5'  class='ptg-ptg0'>Hello</text></g>
 
 </svg>
