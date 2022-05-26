@@ -13,7 +13,7 @@
     
     
       
-        <title>termage-svg - docs::Termage</title>
+        <title>Other languages - docs::Termage</title>
       
     
     
@@ -91,7 +91,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              termage-svg
+              Other languages
             
           </span>
         </div>
@@ -251,19 +251,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../termage_svg/" class="md-nav__link">
         termage-svg
       </a>
-      
     </li>
   
 
@@ -274,11 +266,19 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../languages/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Other languages
       </a>
+      
     </li>
   
 
@@ -330,7 +330,7 @@
   
   
   <a
-    href="https://github.com/bczsalba/mkdocs-termage-plugin/edit/master/docs/termage_svg.md"
+    href="https://github.com/bczsalba/mkdocs-termage-plugin/edit/master/docs/languages.md"
     title="Edit this page"
     class="md-content__button md-icon"
   >
@@ -339,7 +339,7 @@
 
   <!-- Replace the part of the url in `edit` by what is in `view` -->
   <a
-    href="https://raw.githubusercontent.com/bczsalba/mkdocs-termage-plugin/master/docs/termage_svg.md"
+    href="https://raw.githubusercontent.com/bczsalba/mkdocs-termage-plugin/master/docs/languages.md"
     title="View source of this page"
     class="md-content__button md-icon"
   >
@@ -356,13 +356,16 @@
   as the main headline.
 -->
 
-  <h1>termage-svg</h1>
+  <h1>Other languages</h1>
 
 
 <!-- Markdown content -->
-<p>There are times when you don't need to show the code behind a screenshot. We offer the special declaration <code>termage-svg</code> to return the SVG file without the tabbed layout.</p>
-<p>All arguments and behaviour is shared between <code>termage</code> and <code>termage-svg</code>, with the exception of the difference in layout.</p>
-<p><img align="center" alt="Straight to SVG!" src="../assets/termage_13.svg" /></p>
+<p>In order for <code>Termage</code> to support more languages, PyTermGUI must support two things for each:</p>
+<ul>
+<li>Executing their code</li>
+<li>Wrapping the output of their STDOUT</li>
+</ul>
+<p>The first problem is mostly solved already; there seem to be plenty of ways to execute both interpreted and compiled languages, it just needs to be implemented. The second part, however, is a bit more of a hangup. It is likely very possible to implement, and if there is enough interest in it I might try to do so.</p>
 
 <!-- Source file information -->
 
@@ -378,7 +381,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../options/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Syntax &amp; options" rel="prev">
+        <a href="../termage_svg/" class="md-footer__link md-footer__link--prev" aria-label="Previous: termage-svg" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -387,20 +390,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Syntax & options
+              termage-svg
             </div>
           </div>
         </a>
       
       
         
-        <a href="../languages/" class="md-footer__link md-footer__link--next" aria-label="Next: Other languages" rel="next">
+        <a href="../implementation/" class="md-footer__link md-footer__link--next" aria-label="Next: Implementation details" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Other languages
+              Implementation details
             </div>
           </div>
           <div class="md-footer__button md-icon">

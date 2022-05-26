@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#include" class="md-skip">
+        <a href="#hiding-lines" class="md-skip">
           Skip to content
         </a>
       
@@ -273,6 +273,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#hiding-lines" class="md-nav__link">
+    Hiding lines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#include" class="md-nav__link">
     Include
   </a>
@@ -338,6 +345,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../languages/" class="md-nav__link">
+        Other languages
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../implementation/" class="md-nav__link">
         Implementation details
       </a>
@@ -368,6 +390,13 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hiding-lines" class="md-nav__link">
+    Hiding lines
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#include" class="md-nav__link">
@@ -415,15 +444,41 @@
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
-                
-  <a href="https://github.com/bczsalba/mkdocs-termage-plugin/edit/master/docs/options.md" title="Edit this page" class="md-content__button md-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+                <!-- Edited from https://github.com/squidfunk/mkdocs-material/blob/master/src/overrides/partials/content.html -->
+
+  
+  
+  <a
+    href="https://github.com/bczsalba/mkdocs-termage-plugin/edit/master/docs/options.md"
+    title="Edit this page"
+    class="md-content__button md-icon"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+  </a>
+
+  <!-- Replace the part of the url in `edit` by what is in `view` -->
+  <a
+    href="https://raw.githubusercontent.com/bczsalba/mkdocs-termage-plugin/master/docs/options.md"
+    title="View source of this page"
+    class="md-content__button md-icon"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
   </a>
 
 
+<!-- Tags -->
+
+
+<!--
+  Hack: check whether the content contains a h1 headline. If it
+  doesn't, the page title (or respectively site name) is used
+  as the main headline.
+-->
 
   <h1>Syntax & options</h1>
 
+
+<!-- Markdown content -->
 <p>The format used by the plugin is the following:</p>
 <div class="highlight"><pre><span></span><code>```termage  option=value ...
 {python_code}
@@ -449,6 +504,20 @@
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>Currently, options can only be set on a per-block basis. This is subject to change.</p>
+</div>
+<h2 id="hiding-lines">Hiding lines</h2>
+<p>By default, all lines within a <code>termage</code> block will be executed and shown in the <code>Python</code> tab. If you want to <em>execute</em> a line, but not have it show up in the source code, you can prepend it using an ampersand (<code>&amp;</code>):</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">Output</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># We are using the PTG print function, but that&#39;s not visible in the output</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">locals</span><span class="p">())</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><img align="center" alt="" src="../assets/termage_4.svg" /></p>
+</div>
+</div>
 </div>
 <h2 id="include">Include</h2>
 <p>Includes a file within the codeblock. The file path's "origin" is wherever <code>mkdocs</code> runs from, which is usually the project root.</p>
@@ -480,13 +549,13 @@ print(&quot;Code from the original codeblock is retained!&quot;)
 </div>
 <h2 id="width-height">Width &amp; height</h2>
 <p>Sets the output terminal's dimensions, in characters.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1"><code>width=50</code> <code>height=10</code></label><label for="__tabbed_2_2"><code>width=100</code> <code>height=20</code></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1"><code>width=50</code> <code>height=10</code></label><label for="__tabbed_3_2"><code>width=100</code> <code>height=20</code></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img align="center" alt="" src="../assets/termage_4.svg" /></p>
+<p><img align="center" alt="" src="../assets/termage_5.svg" /></p>
 </div>
 <div class="tabbed-block">
-<p><img align="center" alt="" src="../assets/termage_5.svg" /></p>
+<p><img align="center" alt="" src="../assets/termage_6.svg" /></p>
 </div>
 </div>
 </div>
@@ -497,13 +566,13 @@ print(&quot;Code from the original codeblock is retained!&quot;)
 <h2 id="foreground-background">Foreground &amp; background</h2>
 <p>Sets the output terminal's default colors.</p>
 <p>Foreground will be used for any unstyled text. Background will be used for the titlebar and body of the "window".</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Default</label><label for="__tabbed_3_2"><code>foreground=green</code> <code>background=#DDDDDD</code></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Default</label><label for="__tabbed_4_2"><code>foreground=green</code> <code>background=#DDDDDD</code></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img align="center" alt="" src="../assets/termage_6.svg" /></p>
+<p><img align="center" alt="" src="../assets/termage_7.svg" /></p>
 </div>
 <div class="tabbed-block">
-<p><img align="center" alt="" src="../assets/termage_7.svg" /></p>
+<p><img align="center" alt="" src="../assets/termage_8.svg" /></p>
 </div>
 </div>
 </div>
@@ -514,28 +583,10 @@ print(&quot;Code from the original codeblock is retained!&quot;)
 <h2 id="tabs">Tabs</h2>
 <p>Sets the text labels of each of the tabs.</p>
 <p>Accepts two values, delimited by a single <code>,</code>. The first value is used for the Python code, and the second is used for the SVG output.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Default</label><label for="__tabbed_4_2"><code>tabs=Code,SVG</code></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Default</label><label for="__tabbed_5_2"><code>tabs=Code,SVG</code></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">Output</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytermgui</span> <span class="k">as</span> <span class="nn">ptg</span>
-
-
-<span class="k">with</span> <span class="n">ptg</span><span class="o">.</span><span class="n">WindowManager</span><span class="p">()</span> <span class="k">as</span> <span class="n">manager</span><span class="p">:</span>
-    <span class="n">manager</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">add_slot</span><span class="p">()</span>
-    <span class="n">manager</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ptg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="s2">&quot;Some window&quot;</span><span class="p">,</span> <span class="n">box</span><span class="o">=</span><span class="s2">&quot;EMPTY&quot;</span><span class="p">))</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<p><img align="center" alt="" src="../assets/termage_8.svg" /></p>
-</div>
-</div>
-</div>
-</div>
-<div class="tabbed-block">
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Code</label><label for="__tabbed_6_2">SVG</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Python</label><label for="__tabbed_6_2">Output</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytermgui</span> <span class="k">as</span> <span class="nn">ptg</span>
@@ -552,6 +603,24 @@ print(&quot;Code from the original codeblock is retained!&quot;)
 </div>
 </div>
 </div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Code</label><label for="__tabbed_7_2">SVG</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytermgui</span> <span class="k">as</span> <span class="nn">ptg</span>
+
+
+<span class="k">with</span> <span class="n">ptg</span><span class="o">.</span><span class="n">WindowManager</span><span class="p">()</span> <span class="k">as</span> <span class="n">manager</span><span class="p">:</span>
+    <span class="n">manager</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">add_slot</span><span class="p">()</span>
+    <span class="n">manager</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ptg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="s2">&quot;Some window&quot;</span><span class="p">,</span> <span class="n">box</span><span class="o">=</span><span class="s2">&quot;EMPTY&quot;</span><span class="p">))</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><img align="center" alt="" src="../assets/termage_10.svg" /></p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <h2 id="title">Title</h2>
@@ -561,16 +630,18 @@ print(&quot;Code from the original codeblock is retained!&quot;)
 <p>If your title includes a space, make sure to escape it!</p>
 <p>For example, instead of <code>title=My title</code>, or <code>title="My title"</code> use <code>title=My\ Title</code>.</p>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Default</label><label for="__tabbed_7_2"><code>title=My\ fancy\ title</code></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Default</label><label for="__tabbed_8_2"><code>title=My\ fancy\ title</code></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img align="center" alt="" src="../assets/termage_10.svg" /></p>
+<p><img align="center" alt="" src="../assets/termage_11.svg" /></p>
 </div>
 <div class="tabbed-block">
-<p><img align="center" alt="My fancy title" src="../assets/termage_11.svg" /></p>
+<p><img align="center" alt="My fancy title" src="../assets/termage_12.svg" /></p>
 </div>
 </div>
 </div>
+
+<!-- Source file information -->
 
               
             </article>
