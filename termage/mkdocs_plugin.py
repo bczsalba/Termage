@@ -110,7 +110,7 @@ class TermagePlugin(BasePlugin):
         if indent.endswith("\\"):
             indent = indent.replace("\\", "")
             return f"""\
-{indent}```termage {options}
+{indent}```termage{svg_only or ''}{options}
 {code}```"""
 
         opts = self._parse_opts(options)
