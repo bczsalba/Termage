@@ -1,10 +1,8 @@
 from setuptools import setup, find_packages
 
-import mkdocs_termage_plugin as termage
-
 setup(
     name="mkdocs-termage-plugin",
-    version=termage.__version__,
+    version="0.1.1",
     packages=find_packages(),
     license="MIT",
     description="",
