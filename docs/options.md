@@ -24,6 +24,18 @@ As all options are read as strings, there are some conversion that are done. **D
 !!! info
     Currently, options can only be set on a per-block basis. This is subject to change.
 
+
+## Hiding lines
+
+By default, all lines within a `termage` block will be executed and shown in the `Python` tab. If you want to _execute_ a line, but not have it show up in the source code, you can prepend it using an ampersand (`&`):
+
+```termage title=Hidden\ lines
+&from pytermgui.pretty import print
+
+# We are using the PTG print function, but that's not visible in the output
+print(locals())
+```
+
 ## Include
 
 Includes a file within the codeblock. The file path's "origin" is wherever `mkdocs` runs from, which is usually the project root.

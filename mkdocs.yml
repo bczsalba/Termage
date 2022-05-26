@@ -2,6 +2,9 @@ site_name: docs::Termage
 
 theme:
   name: material
+
+  custom_dir: docs/overrides
+
   font:
     text: Open Sans
 
@@ -44,4 +47,5 @@ nav:
   - Introduction: index.md
   - "Syntax & options": options.md
   - "termage-svg": termage_svg.md
+  - Other languages: languages.md
   - Implementation details: implementation.md
