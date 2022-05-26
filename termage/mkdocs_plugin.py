@@ -33,6 +33,7 @@ DEFAULT_OPTS = {
     "background": "#212121",
     "title": "",
     "include": None,
+    "highlight": False,
 }
 
 
@@ -47,9 +48,7 @@ class TermageOptions:
     foreground: str
     background: str
     tabs: tuple[str, str]
-
-
-VALID_FIELDS = fields(TermageOptions)
+    highlight: bool
 
 
 class TermagePlugin(BasePlugin):
@@ -89,7 +88,11 @@ class TermagePlugin(BasePlugin):
                     f"Unexpected key {key!r}. Please choose from {list(opt_dict)!r}."
                 )
 
-            if value.isdigit():
+            original = opt_dict[key]
+            if isinstance(original, bool):
+                value = value.lower() in ("1", "true", "yes")
+
+            elif isinstance(original, int):
                 value = int(value)
 
             elif isinstance(opt_dict[key], tuple):
@@ -138,7 +141,7 @@ class TermagePlugin(BasePlugin):
 
         set_colors(opts.foreground, opts.background)
         with patched_stdout_recorder(opts.width, opts.height) as recorder:
-            execute(module=None, code=exec_code)
+            execute(module=None, code=exec_code, highlight=opts.highlight)
 
         path = self._get_next_path()
         recorder.save_svg(str(Path("docs") / path), title=opts.title)
