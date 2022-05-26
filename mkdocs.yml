@@ -32,8 +32,8 @@ plugins:
   - search
   - termage
 
-repo_url: https://github.com/bczsalba/mkdocs-termage-plugin
-repo_name: bczsalba/mkdocs-termage
+repo_url: https://github.com/bczsalba/termage
+repo_name: bczsalba/termage
 
 markdown_extensions:
   - admonition
