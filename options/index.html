@@ -13,7 +13,7 @@
     
     
       
-        <title>Syntax & options - docs::Termage</title>
+        <title>Options - docs::Termage</title>
       
     
     
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hiding-lines" class="md-skip">
+        <a href="#include" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Syntax & options
+              Options
             
           </span>
         </div>
@@ -162,13 +162,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/bczsalba/mkdocs-termage-plugin" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/bczsalba/termage" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    bczsalba/mkdocs-termage
+    bczsalba/termage
   </div>
 </a>
       </div>
@@ -207,13 +207,13 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/bczsalba/mkdocs-termage-plugin" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/bczsalba/termage" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
-    bczsalba/mkdocs-termage
+    bczsalba/termage
   </div>
 </a>
     </div>
@@ -251,12 +251,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Syntax & options
+          Options
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Syntax & options
+        Options
       </a>
       
         
@@ -273,13 +273,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#hiding-lines" class="md-nav__link">
-    Hiding lines
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#include" class="md-nav__link">
     Include
   </a>
@@ -287,15 +280,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#width-height" class="md-nav__link">
-    Width &amp; height
+  <a href="#hide-lines" class="md-nav__link">
+    Hide lines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#width-and-height" class="md-nav__link">
+    Width and Height
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#foreground-background" class="md-nav__link">
-    Foreground &amp; background
+    Foreground &amp; Background
   </a>
   
 </li>
@@ -330,8 +330,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../termage_svg/" class="md-nav__link">
-        termage-svg
+      <a href="../cli/" class="md-nav__link">
+        In the command line
       </a>
     </li>
   
@@ -345,23 +345,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../languages/" class="md-nav__link">
-        Other languages
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../implementation/" class="md-nav__link">
-        Implementation details
+      <a href="../plugin/" class="md-nav__link">
+        As an MkDocs plugin
       </a>
     </li>
   
@@ -392,13 +377,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#hiding-lines" class="md-nav__link">
-    Hiding lines
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#include" class="md-nav__link">
     Include
   </a>
@@ -406,15 +384,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#width-height" class="md-nav__link">
-    Width &amp; height
+  <a href="#hide-lines" class="md-nav__link">
+    Hide lines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#width-and-height" class="md-nav__link">
+    Width and Height
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#foreground-background" class="md-nav__link">
-    Foreground &amp; background
+    Foreground &amp; Background
   </a>
   
 </li>
@@ -449,7 +434,7 @@
   
   
   <a
-    href="https://github.com/bczsalba/mkdocs-termage-plugin/edit/master/docs/options.md"
+    href="https://github.com/bczsalba/termage/edit/master/docs/options.md"
     title="Edit this page"
     class="md-content__button md-icon"
   >
@@ -458,7 +443,7 @@
 
   <!-- Replace the part of the url in `edit` by what is in `view` -->
   <a
-    href="https://raw.githubusercontent.com/bczsalba/mkdocs-termage-plugin/master/docs/options.md"
+    href="https://github.com/bczsalba/termage/edit/master/docs/options.md"
     title="View source of this page"
     class="md-content__button md-icon"
   >
@@ -475,52 +460,13 @@
   as the main headline.
 -->
 
-  <h1>Syntax & options</h1>
+  <h1>Options</h1>
 
 
 <!-- Markdown content -->
-<p>The format used by the plugin is the following:</p>
-<div class="highlight"><pre><span></span><code>```termage  option=value ...
-{python_code}
-```
-</code></pre></div>
-<p>As all options are read as strings, there are some conversion that are done. <strong>Digits</strong> are turned into integers, and <strong><code>,</code> delimited strings</strong> are turned into tuples.</p>
-<div class="admonition note">
-<p class="admonition-title">Using spaces</p>
-<p>Strings may include space chars (" ") in them, but the spaces <strong>must</strong> be escaped:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Bad</label><label for="__tabbed_1_2">Good</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>termage title=My Title
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>termage title=My\ Title
-</code></pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Currently, options can only be set on a per-block basis. This is subject to change.</p>
-</div>
-<h2 id="hiding-lines">Hiding lines</h2>
-<p>By default, all lines within a <code>termage</code> block will be executed and shown in the <code>Python</code> tab. If you want to <em>execute</em> a line, but not have it show up in the source code, you can prepend it using an ampersand (<code>&amp;</code>):</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">Output</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="c1"># We are using the PTG print function, but that&#39;s not visible in the output</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">locals</span><span class="p">())</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<p><img align="center" alt="" src="../assets/termage_4.svg" /></p>
-</div>
-</div>
-</div>
-<h2 id="include">Include</h2>
-<p>Includes a file within the codeblock. The file path's "origin" is wherever <code>mkdocs</code> runs from, which is usually the project root.</p>
+<p>Regardless of your entrypoint, the options available are going to be the same.</p>
+<h3 id="include">Include</h3>
+<p>Includes a file within a codeblock. The file path must originate from the same directory as <code>mkdocs.yml</code>.</p>
 <p>For example, let's say we have the following structure:</p>
 <div class="highlight"><pre><span></span><code>mkdocs.yml
 docs/
@@ -530,7 +476,7 @@ docs/
         intro02.py
 </code></pre></div>
 <p>To include <code>intro01.py</code> into a Termage block within <code>index.md</code>, you could use:</p>
-<div class="highlight"><pre><span></span><code>```termage  include=docs/src/intro01.py
+<div class="highlight"><pre><span></span><code>```termage include=docs/src/intro01.py
 print(&quot;Code from the original codeblock is retained!&quot;)
 ```
 </code></pre></div>
@@ -541,15 +487,36 @@ print(&quot;Code from the original codeblock is retained!&quot;)
 <div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Included text will always preface the real value of a codeblock&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>Termage will parse the block as:</p>
-<div class="highlight"><pre><span></span><code>```termage  &lt;options&gt;
+<div class="highlight"><pre><span></span><code>```termage &lt;options&gt;
 print(&quot;Included text will always preface the real value of a codeblock&quot;)
 print(&quot;Code from the original codeblock is retained!&quot;)
 ```
 </code></pre></div>
 </div>
-<h2 id="width-height">Width &amp; height</h2>
-<p>Sets the output terminal's dimensions, in characters.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1"><code>width=50</code> <code>height=10</code></label><label for="__tabbed_3_2"><code>width=100</code> <code>height=20</code></label></div>
+<h3 id="hide-lines">Hide lines</h3>
+<p>The plugin has a special bit of syntax to signify <code>Run this line of code, but don't display it</code>. It is denoted by prefacing any hidden line with an ampersand (&amp;):</p>
+<div class="admonition note">
+<div class="highlight"><span class="filename">Source</span><pre><span></span><code>```termage title=Hidden\ lines
+&amp;from pytermgui.pretty import print
+
+print(locals())
+```
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Python</label><label for="__tabbed_1_2">Output</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="nb">locals</span><span class="p">())</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><img align="center" alt="" src="../assets/termage_4.svg" /></p>
+</div>
+</div>
+</div>
+</div>
+<h3 id="width-and-height">Width and Height</h3>
+<p>Sets the terminal's dimension of the given axis. Must be given an integer, which will be taken as a character-count.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1"><code>width=50</code> <code>height=10</code></label><label for="__tabbed_2_2"><code>width=100</code> <code>height=20</code></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><img align="center" alt="" src="../assets/termage_5.svg" /></p>
@@ -559,14 +526,13 @@ print(&quot;Code from the original codeblock is retained!&quot;)
 </div>
 </div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If no dimensions are provided, Termage will use the golden standard (80, 20) dimension tuple.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If no dimensions are provided, they default to (80, 24).</p>
 </div>
-<h2 id="foreground-background">Foreground &amp; background</h2>
-<p>Sets the output terminal's default colors.</p>
-<p>Foreground will be used for any unstyled text. Background will be used for the titlebar and body of the "window".</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Default</label><label for="__tabbed_4_2"><code>foreground=green</code> <code>background=#DDDDDD</code></label></div>
+<h3 id="foreground-background">Foreground &amp; Background</h3>
+<p>Modifies the terminal's default colors. <code>foreground</code> is used for all non-styled text, and background is used as both the background to the terminal's contents as well as the window that it emulates.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Default</label><label for="__tabbed_3_2"><code>foreground=green</code> <code>background=#DDDDDD</code></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><img align="center" alt="" src="../assets/termage_7.svg" /></p>
@@ -576,17 +542,17 @@ print(&quot;Code from the original codeblock is retained!&quot;)
 </div>
 </div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
 <p>Foreground defaults to <strong>#DDDDDD</strong>, and background defaults to <strong>#212121</strong>.</p>
 </div>
-<h2 id="tabs">Tabs</h2>
+<h3 id="tabs">Tabs</h3>
 <p>Sets the text labels of each of the tabs.</p>
 <p>Accepts two values, delimited by a single <code>,</code>. The first value is used for the Python code, and the second is used for the SVG output.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Default</label><label for="__tabbed_5_2"><code>tabs=Code,SVG</code></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Default</label><label for="__tabbed_4_2"><code>tabs=Code,SVG</code></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Python</label><label for="__tabbed_6_2">Output</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Python</label><label for="__tabbed_5_2">Output</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytermgui</span> <span class="k">as</span> <span class="nn">ptg</span>
@@ -604,7 +570,7 @@ print(&quot;Code from the original codeblock is retained!&quot;)
 </div>
 </div>
 <div class="tabbed-block">
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Code</label><label for="__tabbed_7_2">SVG</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Code</label><label for="__tabbed_6_2">SVG</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytermgui</span> <span class="k">as</span> <span class="nn">ptg</span>
@@ -623,14 +589,14 @@ print(&quot;Code from the original codeblock is retained!&quot;)
 </div>
 </div>
 </div>
-<h2 id="title">Title</h2>
+<h3 id="title">Title</h3>
 <p>Sets the title at the top of the output terminal.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>If your title includes a space, make sure to escape it!</p>
+<p>When using the plugin, make sure to escape any spaces present in your title!</p>
 <p>For example, instead of <code>title=My title</code>, or <code>title="My title"</code> use <code>title=My\ Title</code>.</p>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Default</label><label for="__tabbed_8_2"><code>title=My\ fancy\ title</code></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Default</label><label for="__tabbed_7_2"><code>title=My\ fancy\ title</code></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><img align="center" alt="" src="../assets/termage_11.svg" /></p>
@@ -671,13 +637,13 @@ print(&quot;Code from the original codeblock is retained!&quot;)
       
       
         
-        <a href="../termage_svg/" class="md-footer__link md-footer__link--next" aria-label="Next: termage-svg" rel="next">
+        <a href="../cli/" class="md-footer__link md-footer__link--next" aria-label="Next: In the command line" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              termage-svg
+              In the command line
             </div>
           </div>
           <div class="md-footer__button md-icon">
