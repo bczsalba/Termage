@@ -1,5 +1,7 @@
 # Termage
 
+See the [docs](https://termage.bczsalba.com) for some live examples.
+
 `Termage` allows you to generate up-to-date, reproducible and _real_ screenshots of Python output while building your documentation. It uses [PyTermGUI](https://github.com/bczsalba/pytermgui) to create the SVGs, and pre-processes your markdown file into a `codefences` format.
 
 ![Code](https://raw.githubusercontent.com/bczsalba/mkdocs-termage-plugin/master/assets/code.png)
