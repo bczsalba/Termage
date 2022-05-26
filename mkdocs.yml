@@ -14,16 +14,16 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: purple
-      accent: orange
+      primary: light-green
+      accent: amber
       toggle:
         icon: material/lightbulb
         name: Switch to light mode
 
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: deep-purple
-      accent: yellow
+      primary: lime
+      accent: orange
       toggle:
         icon: material/lightbulb-outline
         name: Switch to dark mode
