@@ -40,12 +40,12 @@ markdown_extensions:
   - attr_list
   - pymdownx.superfences
   - pymdownx.details
+  - pymdownx.snippets
   - pymdownx.tabbed:
       alternate_style: true
 
 nav:
   - Introduction: index.md
-  - "Syntax & options": options.md
-  - "termage-svg": termage_svg.md
-  - Other languages: languages.md
-  - Implementation details: implementation.md
+  - Options: options.md
+  - In the command line: cli.md
+  - As an MkDocs plugin: plugin.md

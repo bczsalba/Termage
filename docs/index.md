@@ -1,28 +1,18 @@
-`Termage` allows you to generate up-to-date, reproducible and _real_ screenshots of Python output while building your documentation. It uses [PyTermGUI](https://github.com/bczsalba/pytermgui) to create the SVGs, and pre-processes your markdown file into a `codefences` format.
+`Termage` is a wrapper library for [PyTermGUI](https://github.com/bczsalba/pytermgui)'s SVG export functionalities. Other than providing the module, it also offers a [CLI](cli.md) and an [MkDocs plugin](plugin.md) to put SVGs just about anywhere you can think of.
 
-!!! info
-    Termage requires the following markdown extensions:
-
-    - attr-list
-    - pymdown-superfences
-    - pymdown-tabbed
+!!! success ""
+    Termage has native support for capturing applications based on `PyTermGUI`'s `WindowManager`!
 
 
-```termage height=10 width=60
-from pytermgui import highlight_python, tim
+```termage title=Hey\ there!
+from pytermgui import tim, ColorPicker
+from pytermgui.pretty import print
 
-code = """
-while True:
-    if condition:
-        print("Hello")
-    else:
-        print("Goodbye")
+tim.print("Welcome to [!gradient(112) bold]Termage[/]!\n")
+tim.print("Termage allows you to display [italic]any[/italic] terminal output in a terminal-mimicking [bold]SVG[/bold]!")
 
-    input()
-
-"""
-
-tim.print(highlight_python(code))
+tim.print("\nHere are the current locals:")
+print(locals())
 ```
 
 
@@ -31,30 +21,7 @@ tim.print(highlight_python(code))
 `Termage` is best installed using `pip`:
 
 ```
-$ pip install mkdocs-termage-plugin
+$ pip install termage
 ```
 
-This installs the plugin, as well as PyTermGUI as a dependency. By this point you probably _should_ already have mkdocs installed.
-
-
-## Setup
-
-To use the plugin, you should first add it to your `mkdocs.yml` plugin list:
-
-```yaml title="mkdocs.yml"
-plugins:
-    - termage
-```
-
-!!! warning
-    Termage should be loaded before any other markdown pre-processor plugins, to avoid conflicts while formatting.
-
-Additionally, you need to make sure some markdown extensions are enabled:
-
-```yaml title="mkdocs.yml"
-markdown_extensions:
-  - attr_list
-  - pymdownx.superfences
-  - pymdownx.tabbed:
-      alternate_style: true
-```
+This will install PyTermGUI, as well as Termage. The MkDocs plugin is included within the installation as well.

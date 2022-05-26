@@ -1,44 +1,9 @@
-The format used by the plugin is the following:
-
-````markdown
-\```termage option=value ...
-{python_code}
-```
-````
-
-As all options are read as strings, there are some conversion that are done. **Digits** are turned into integers, and **`,` delimited strings** are turned into tuples.
-
-!!! note "Using spaces"
-    Strings may include space chars (" ") in them, but the spaces **must** be escaped:
-
-    === "Bad"
-        ```
-        termage title=My Title
-        ```
-
-    === "Good"
-        ```
-        termage title=My\ Title
-        ```
-
-!!! info
-    Currently, options can only be set on a per-block basis. This is subject to change.
+Regardless of your entrypoint, the options available are going to be the same.
 
 
-## Hiding lines
+### Include
 
-By default, all lines within a `termage` block will be executed and shown in the `Python` tab. If you want to _execute_ a line, but not have it show up in the source code, you can prepend it using an ampersand (`&`):
-
-```termage title=Hidden\ lines
-&from pytermgui.pretty import print
-
-# We are using the PTG print function, but that's not visible in the output
-print(locals())
-```
-
-## Include
-
-Includes a file within the codeblock. The file path's "origin" is wherever `mkdocs` runs from, which is usually the project root.
+Includes a file within a codeblock. The file path must originate from the same directory as `mkdocs.yml`.
 
 For example, let's say we have the following structure:
 
@@ -78,10 +43,31 @@ print("Code from the original codeblock is retained!")
     ````
 
 
-## Width & height
+### Hide lines
 
-Sets the output terminal's dimensions, in characters.
+The plugin has a special bit of syntax to signify `Run this line of code, but don't display it`. It is denoted by prefacing any hidden line with an ampersand (&):
 
+!!! note ""
+
+    ```` title="Source"
+    \```termage title=Hidden\ lines
+    &from pytermgui.pretty import print
+
+    print(locals())
+    ```
+    ````
+
+    ```termage title=Hidden\ lines
+    &from pytermgui.pretty import print
+
+    print(locals())
+    ```
+
+
+
+### Width and Height
+
+Sets the terminal's dimension of the given axis. Must be given an integer, which will be taken as a character-count.
 
 === "`width=50` `height=10`"
 
@@ -93,15 +79,14 @@ Sets the output terminal's dimensions, in characters.
     ```termage-svg include=docs/src/dimension_demo.py width=100 height=20
     ```
 
-!!! note
-    If no dimensions are provided, Termage will use the golden standard (80, 20) dimension tuple.
+!!! info
+    If no dimensions are provided, they default to (80, 24).
 
 
-## Foreground & background
 
-Sets the output terminal's default colors.
+### Foreground & Background
 
-Foreground will be used for any unstyled text. Background will be used for the titlebar and body of the "window".
+Modifies the terminal's default colors. `foreground` is used for all non-styled text, and background is used as both the background to the terminal's contents as well as the window that it emulates.
 
 === "Default"
 
@@ -115,11 +100,11 @@ Foreground will be used for any unstyled text. Background will be used for the t
     print("Hello")
     ```
 
-!!! note
+!!! info
     Foreground defaults to __#DDDDDD__, and background defaults to __#212121__.
 
 
-## Tabs
+### Tabs
 
 Sets the text labels of each of the tabs.
 
@@ -135,12 +120,12 @@ Accepts two values, delimited by a single `,`. The first value is used for the P
     ```termage include=docs/src/dimension_demo.py tabs=Code,SVG
     ```
 
-## Title
+### Title
 
 Sets the title at the top of the output terminal.
 
 !!! warning
-    If your title includes a space, make sure to escape it!
+    When using the plugin, make sure to escape any spaces present in your title!
 
     For example, instead of `title=My title`, or `title="My title"` use `title=My\ Title`.
 
