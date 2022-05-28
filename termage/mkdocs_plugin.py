@@ -1,5 +1,6 @@
 """A mkdocs plugin, implementing Termage."""
 
+import os
 import re
 import sys
 from pathlib import Path
@@ -19,11 +20,11 @@ OUTPUT_BLOCK_TEMPLATE = """
     ```
 
 === "{svg_tab_name}"
-{svg}{{ align=center }}
+{svg}
 """
 
 STDOUT_WRITE = sys.stdout.write
-OUTPUT_SVG_TEMPLATE = "{indent}![{alt}]({path}){{ align=center }}"
+OUTPUT_SVG_TEMPLATE = "{indent}![{alt}]({path})"
 
 DEFAULT_OPTS = {
     "width": 80,
@@ -141,15 +142,23 @@ class TermagePlugin(BasePlugin):
 
         set_colors(opts.foreground, opts.background)
         with patched_stdout_recorder(opts.width, opts.height) as recorder:
-            execute(module=None, code=exec_code, highlight=opts.highlight)
+            glob = execute(module=None, code=exec_code, highlight=opts.highlight)
 
-        path = self._get_next_path()
-        recorder.save_svg(str(Path("docs") / path), title=opts.title)
+        name = self._get_next_path()
+        path = Path("docs") / name
+        export = recorder.export_svg(title=opts.title)
 
-        STDOUT_WRITE(f"Creating {path} with {opts.title=}.\n")
+        existing = ""
+        if os.path.exists(path):
+            with open(path, "r") as existing_file:
+                existing = existing_file.read()
+
+        if existing != export:
+            with open(path, "w") as new:
+                new.write(export)
 
         if svg_only:
-            return OUTPUT_SVG_TEMPLATE.format(indent=indent, alt=opts.title, path=path)
+            return OUTPUT_SVG_TEMPLATE.format(indent=indent, alt=opts.title, path=name)
 
         # Re-indent template to match original indentation
         template = ""
@@ -161,7 +170,7 @@ class TermagePlugin(BasePlugin):
 
         indent += 4 * " "
         return template.format(
-            svg=f"{indent}![]({path})",
+            svg=f"{indent}![]({name})",
             code_tab_name=opts.tabs[0],
             svg_tab_name=opts.tabs[1],
             code="\n".join(indent + line for line in display_code),
