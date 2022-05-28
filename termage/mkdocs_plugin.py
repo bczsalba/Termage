@@ -24,7 +24,11 @@ OUTPUT_BLOCK_TEMPLATE = """
 """
 
 STDOUT_WRITE = sys.stdout.write
-OUTPUT_SVG_TEMPLATE = "{indent}![{alt}]({path})"
+
+OUTPUT_SVG_TEMPLATE = """\
+{indent}<p align="center">
+{indent}    <img src="{src}" alt="{alt}">
+{indent}</p>"""
 
 DEFAULT_OPTS = {
     "width": 80,
@@ -157,23 +161,27 @@ class TermagePlugin(BasePlugin):
             with open(path, "w") as new:
                 new.write(export)
 
+        # Point the filename back to root
+        name = "/" + name
+
         if svg_only:
-            return OUTPUT_SVG_TEMPLATE.format(indent=indent, alt=opts.title, path=name)
+            return OUTPUT_SVG_TEMPLATE.format(indent=indent, alt=opts.title, src=name)
 
         # Re-indent template to match original indentation
         template = ""
         for line in OUTPUT_BLOCK_TEMPLATE.splitlines():
-            if line not in ("{code}", "{svg}{{ align=center }}"):
+            if line not in ("{code}", "{svg}"):
                 line = indent + line
 
             template += line + "\n"
 
         indent += 4 * " "
+
         return template.format(
-            svg=f"{indent}![]({name})",
             code_tab_name=opts.tabs[0],
             svg_tab_name=opts.tabs[1],
             code="\n".join(indent + line for line in display_code),
+            svg=OUTPUT_SVG_TEMPLATE.format(indent=indent, alt=opts.title, src=name),
         )
 
     def on_page_markdown(  # pylint: disable=unused-argument
