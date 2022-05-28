@@ -25,3 +25,6 @@ $ pip install termage
 ```
 
 This will install PyTermGUI, as well as Termage. The MkDocs plugin is included within the installation as well.
+
+```termage include=source_file.py title=My\ SVG width=84 height=15
+```
