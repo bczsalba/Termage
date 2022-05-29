@@ -27,7 +27,7 @@ STDOUT_WRITE = sys.stdout.write
 
 OUTPUT_SVG_TEMPLATE = """\
 {indent}<p align="center">
-{indent}    <img src="{src}" alt="{alt}">
+{indent}<img src="{src}" alt="{alt}" {style}>
 {indent}</p>"""
 
 DEFAULT_OPTS = {
@@ -36,6 +36,7 @@ DEFAULT_OPTS = {
     "tabs": ("Python", "Output"),
     "foreground": "#dddddd",
     "background": "#212121",
+    "chrome": True,
     "title": "",
     "include": None,
     "highlight": False,
@@ -52,6 +53,7 @@ class TermageOptions:
     include: str
     foreground: str
     background: str
+    chrome: bool
     tabs: tuple[str, str]
     highlight: bool
 
@@ -150,7 +152,7 @@ class TermagePlugin(BasePlugin):
 
         name = self._get_next_path()
         path = Path("docs") / name
-        export = recorder.export_svg(title=opts.title)
+        export = recorder.export_svg(title=opts.title, chrome=opts.chrome)
 
         existing = ""
         if os.path.exists(path):
@@ -164,8 +166,12 @@ class TermagePlugin(BasePlugin):
         # Point the filename back to root
         name = "/" + name
 
+        style = 'style="margin-top: -1em;"' if not opts.chrome else ""
+
         if svg_only:
-            return OUTPUT_SVG_TEMPLATE.format(indent=indent, alt=opts.title, src=name)
+            return OUTPUT_SVG_TEMPLATE.format(
+                indent=indent, alt=opts.title, src=name, style=style
+            )
 
         # Re-indent template to match original indentation
         template = ""
@@ -181,7 +187,9 @@ class TermagePlugin(BasePlugin):
             code_tab_name=opts.tabs[0],
             svg_tab_name=opts.tabs[1],
             code="\n".join(indent + line for line in display_code),
-            svg=OUTPUT_SVG_TEMPLATE.format(indent=indent, alt=opts.title, src=name),
+            svg=OUTPUT_SVG_TEMPLATE.format(
+                indent=indent, alt=opts.title, src=name, style=style
+            ),
         )
 
     def on_page_markdown(  # pylint: disable=unused-argument
