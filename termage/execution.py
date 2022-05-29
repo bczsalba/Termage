@@ -48,9 +48,21 @@ def patched_stdout_recorder(
 
     ptg.set_global_terminal(terminal)
 
+    def _write(item, **kwargs) -> None:
+        """Writes something, breaks lines."""
+
+        ends_with_linebreak = item.endswith("\n")
+
+        lines = list(ptg.break_line(item, width))
+        for i, line in enumerate(lines):
+            if ends_with_linebreak or i < len(lines) - 1:
+                line += "\n"
+
+            terminal.write(line, **kwargs)
+
     with terminal.record() as recorder:
         try:
-            sys.stdout.write = terminal.write  # type: ignore
+            sys.stdout.write = _write
             yield recorder
 
         finally:
