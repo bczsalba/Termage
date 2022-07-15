@@ -54,6 +54,7 @@ def patched_stdout_recorder(
         ends_with_linebreak = item.endswith("\n")
 
         lines = list(ptg.break_line(item, width))
+
         for i, line in enumerate(lines):
             if ends_with_linebreak or i < len(lines) - 1:
                 line += "\n"
@@ -89,7 +90,7 @@ def execute(
         # sys.argv = [*args]
         # out = runpy.run_module(mod_name, init_globals={"sys": sys})
         # print(out)
-        raise NotImplementedError("Module execution is not yet executed.")
+        raise NotImplementedError("Module execution is not yet implemented.")
 
     if file is not None:
         with open(file, "r", encoding="utf-8") as source:
