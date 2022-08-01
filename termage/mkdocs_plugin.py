@@ -130,6 +130,9 @@ class TermagePlugin(BasePlugin):
 
                 code = include + code
 
+            if opts.title == "":
+                opts.title = opts.include
+
         exec_code = ""
         display_code = []
 
