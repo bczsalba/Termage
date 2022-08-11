@@ -3,7 +3,7 @@ from __future__ import annotations
 from .execution import patched_stdout_recorder, execute, set_colors
 from .__main__ import main
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 
 def termage(code: str, **kwargs) -> str | None:
