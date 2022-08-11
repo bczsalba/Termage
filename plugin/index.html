@@ -440,7 +440,17 @@
 </code></pre></div>
 <p>Additionally, you must also activate the plugin:</p>
 <div class="highlight"><span class="filename">mkdocs.yaml</span><pre><span></span><code><span class="nt">plugins</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">termage</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">termage</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="c1"># Default config options</span><span class="w"></span>
+<span class="w">      </span><span class="nt">name_template</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;termage_{count}.svg&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;assets&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">name_template</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;termage_{count}.svg&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">background</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;#212121&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">foreground</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;#dddddd&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">tabs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;Python&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;Output&quot;</span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="w">      </span><span class="nt">chrome</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w"></span>
+<span class="w">      </span><span class="nt">width</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+<span class="w">      </span><span class="nt">height</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span><span class="w"></span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -479,7 +489,9 @@
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<p><img align="center" alt="" src="../assets/termage_13.svg" /></p>
+<p><p align="center">
+<img src="/assets/termage_14.svg" alt="Tabbed layout" >
+</p></p>
 </div>
 </div>
 </div>
@@ -493,7 +505,9 @@
 <div class="highlight"><pre><span></span><code>```termage-svg title=Tabbed\ layout include=docs/src/source.py
 ```
 </code></pre></div>
-<p><img align="center" alt="Tabbed layout" src="../assets/termage_14.svg" /></p>
+<p><p align="center">
+<img src="/assets/termage_15.svg" alt="Tabbed layout" >
+</p></p>
 </details>
 </li>
 </ul>

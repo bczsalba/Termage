@@ -412,7 +412,9 @@
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<p><img align="center" alt="" src="assets/termage_1.svg" /></p>
+<p><p align="center">
+<img src="/assets/termage_1.svg" alt="Hey there!" >
+</p></p>
 </div>
 </div>
 </div>
@@ -421,6 +423,28 @@
 <div class="highlight"><pre><span></span><code>$ pip install termage
 </code></pre></div>
 <p>This will install PyTermGUI, as well as Termage. The MkDocs plugin is included within the installation as well.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Python</label><label for="__tabbed_2_2">Output</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytermgui</span> <span class="k">as</span> <span class="nn">ptg</span>
+
+<span class="k">with</span> <span class="n">ptg</span><span class="o">.</span><span class="n">WindowManager</span><span class="p">()</span> <span class="k">as</span> <span class="n">manager</span><span class="p">:</span>
+    <span class="n">manager</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">add_slot</span><span class="p">(</span><span class="s2">&quot;Body&quot;</span><span class="p">)</span>
+    <span class="n">manager</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+        <span class="n">ptg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span>
+            <span class="n">ptg</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="n">ptg</span><span class="o">.</span><span class="n">inspect</span><span class="p">),</span>
+            <span class="n">box</span><span class="o">=</span><span class="s2">&quot;EMPTY&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><p align="center">
+<img src="/assets/termage_2.svg" alt="My SVG" >
+</p></p>
+</div>
+</div>
+</div>
 
 <!-- Source file information -->
 
