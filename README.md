@@ -27,3 +27,5 @@ To use the plugin, you should first add it to your `mkdocs.yml` plugin list:
 plugins:
     - termage
 ```
+
+<!-- HATCH README END -->
