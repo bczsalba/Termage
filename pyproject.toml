@@ -49,10 +49,10 @@ repository = "https://github.com/bczsalba/Termage"
 documentation = "https://termage.bczsalba.com"
 
 [project.scripts]
-termage = "pytermgui.__main__:main"
+termage = "termage.__main__:main"
 
 [project.entry-points."mkdocs.plugins"]
-markdown-exec = "termage.mkdocs_plugin:TermagePlugin"
+termage = "termage.mkdocs_plugin:TermagePlugin"
 
 [tool.hatch.version]
 path = "termage/__init__.py"
