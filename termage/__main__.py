@@ -69,6 +69,13 @@ def _process_args(argv: list[str] | None) -> Namespace:
         help="Highlights the given code, instead of running it.",
     )
 
+    parser.add_argument(
+        "--chrome",
+        choices=["show", "hide"],
+        default="show",
+        help="Highlights the given code, instead of running it.",
+    )
+
     parser.add_argument("--fg", help="Sets the foreground color.", metavar="COLOR")
     parser.add_argument("--bg", help="Sets the background color.", metavar="COLOR")
 
@@ -95,7 +102,9 @@ def main(argv: list[str] | None = None) -> None:
         print(recorder.export_svg(title=args.title, inline_styles=True))
         return
 
-    recorder.save_svg(args.out, title=args.title, inline_styles=True)
+    recorder.save_svg(
+        args.out, title=args.title, chrome=args.chrome == "show", inline_styles=True
+    )
 
 
 if __name__ == "__main__":
