@@ -1,12 +1,17 @@
 """A mkdocs plugin, implementing Termage."""
 
+from __future__ import annotations
+
 import os
 import re
 import sys
 from pathlib import Path
 from dataclasses import dataclass, fields
+from typing import Match
 
 from mkdocs.plugins import BasePlugin
+from mkdocs.config.config_options import Type
+from mkdocs.structure.files import Files, File
 
 from .execution import patched_stdout_recorder, execute, set_colors
 
@@ -30,17 +35,17 @@ OUTPUT_SVG_TEMPLATE = """\
 {indent}<img src="{src}" alt="{alt}" {style}>
 {indent}</p>"""
 
-DEFAULT_OPTS = {
-    "width": 80,
-    "height": 20,
-    "tabs": ("Python", "Output"),
-    "foreground": "#dddddd",
-    "background": "#212121",
-    "chrome": True,
-    "title": "",
-    "include": None,
-    "highlight": False,
-}
+OPTS = [
+    "width",
+    "height",
+    "tabs",
+    "foreground",
+    "background",
+    "chrome",
+    "title",
+    "include",
+    "highlight",
+]
 
 
 @dataclass
@@ -61,23 +66,46 @@ class TermageOptions:
 class TermagePlugin(BasePlugin):
     """An mkdocs plugin for Termage."""
 
+    """
+    termage:
+        path: "docs/assets"
+        template: "termage_{count}.svg"
+    """
+
+    config_scheme = (
+        ("path", Type(str, default="assets")),
+        ("name_template", Type(str, default="termage_{count}.svg")),
+        ("background", Type(str, default="#212121")),
+        ("foreground", Type(str, default="#dddddd")),
+        ("tabs", Type(list, default=["Python", "Output"])),
+        ("chrome", Type(bool, default=True)),
+        ("width", Type(int, default=80)),
+        ("height", Type(int, default=24)),
+    )
+
     def __init__(self) -> None:
         """Sets the initial SVG count."""
 
         self._svg_count = 0
 
-    def _get_next_path(self) -> str:
+    def _get_next_path(self, title: str | None) -> str:
         """Gets the next SVG path."""
 
         self._svg_count += 1
 
-        return f"assets/termage_{self._svg_count}.svg"
+        base = self.config["path"]
+        name_template = self.config["name_template"]
+        name = name_template.format(
+            count=self._svg_count,
+            title=str(title),
+        )
 
-    @staticmethod
-    def _parse_opts(options: str) -> TermageOptions:
+        return f"{base}/{name}"
+
+    def _parse_opts(self, options: str) -> TermageOptions:
         """Parses the options given to a block."""
 
-        opt_dict = DEFAULT_OPTS.copy()
+        opt_dict = {key: self.config.get(key, None) for key in OPTS}
 
         for option in re.split(r"(?<!\\) ", options):
             if len(option) == 0:
@@ -90,7 +118,7 @@ class TermagePlugin(BasePlugin):
 
             value = value.replace("\\", "")
 
-            if key not in DEFAULT_OPTS:
+            if key not in opt_dict:
                 raise ValueError(
                     f"Unexpected key {key!r}. Please choose from {list(opt_dict)!r}."
                 )
@@ -102,14 +130,14 @@ class TermagePlugin(BasePlugin):
             elif isinstance(original, int):
                 value = int(value)
 
-            elif isinstance(opt_dict[key], tuple):
-                value = tuple(value.split(","))
+            elif isinstance(opt_dict[key], list):
+                value = value.split(",")
 
             opt_dict[key] = value
 
         return TermageOptions(**opt_dict)  # type: ignore
 
-    def _replace_codeblock(self, matchobj) -> str:
+    def _replace_codeblock(self, matchobj: Match) -> str:
         """Replaces a codeblock with Termage content."""
 
         indent, svg_only, options, code = matchobj.groups()
@@ -144,16 +172,13 @@ class TermagePlugin(BasePlugin):
             else:
                 display_code.append(line)
 
-            # if line == "":
-            #     continue
-
             exec_code += line + "\n"
 
         set_colors(opts.foreground, opts.background)
         with patched_stdout_recorder(opts.width, opts.height) as recorder:
-            glob = execute(module=None, code=exec_code, highlight=opts.highlight)
+            execute(module=None, code=exec_code, highlight=opts.highlight)
 
-        name = self._get_next_path()
+        name = self._get_next_path(title=opts.title)
         path = Path("docs") / name
         export = recorder.export_svg(title=opts.title, chrome=opts.chrome)
 
