@@ -67,7 +67,7 @@ def patched_stdout_recorder(
 
         ends_with_linebreak = item.endswith("\n")
 
-        lines = list(ptg.break_line(item, width))
+        lines = list(ptg.break_line(item, terminal.width))
 
         for i, line in enumerate(lines):
             if ends_with_linebreak or i < len(lines) - 1:
