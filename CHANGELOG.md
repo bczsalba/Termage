@@ -1,10 +1,22 @@
+## [0.4.0] - 2022-08-13
+
+### Additions
+
+- Add inject `termage` module into execution namespace to allow manipulating the
+  terminal instance.
+
+### Bugfixes
+
+- Fix the target width used for line-breaking not updating per `_write` call
+- Fix `title` parameter defaulting (and showing) `None`
+
+<!-- HATCH README END -->
+
 ## [0.3.2] - 2022-08-11
 
 ### Bugfixes
 
 - Fix various issues caused by migration to Hatch that broke the MkDocs plugin.
-
-<!-- HATCH README END -->
 
 
 ## [0.3.1] - 2022-08-11
