@@ -16,12 +16,26 @@ import pytermgui as ptg
 DEFAULT_WIDTH = 80
 DEFAULT_HEIGHT = 24
 
+
+class TermageNamespace:
+    @property
+    def terminal(self) -> ptg.Terminal:
+        return ptg.get_terminal()
+
+    def fit(self, widget: ptg.Widget) -> None:
+        self.terminal.size = widget.width, widget.height
+
+    def resize(self, width: int, height: int) -> None:
+        self.terminal.size = width, height
+
+
 EXEC_GLOBALS: dict[str, Any] = {
     "__name__": "__main__",
     "__doc__": None,
     "__package__": None,
     "__annotations__": {},
     "__builtins__": builtins,
+    "termage": TermageNamespace(),
 }
 
 
