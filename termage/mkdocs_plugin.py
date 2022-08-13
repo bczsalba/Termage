@@ -158,7 +158,7 @@ class TermagePlugin(BasePlugin):
 
                 code = include + code
 
-            if opts.title == "":
+            if opts.title is None:
                 opts.title = opts.include
 
         exec_code = ""
