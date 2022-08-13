@@ -53,6 +53,7 @@
 
 
 <!-- HATCH URI DEFINITIONS START -->
+[0.4.0]: https://github.com/bczsalba/termage/compare/0.3.2...0.4.0
 [0.3.2]: https://github.com/bczsalba/termage/compare/0.3.1...0.3.2
 [0.3.1]: https://github.com/bczsalba/termage/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/bczsalba/termage/compare/0.2.0...0.3.0
