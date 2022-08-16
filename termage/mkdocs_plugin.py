@@ -20,7 +20,7 @@ RE_BLOCK = re.compile(r"([^\n]*)\`\`\`termage(-svg)?(.*?)\n([\s\S]*?)\`\`\`")
 OUTPUT_BLOCK_TEMPLATE = """
 === "{code_tab_name}"
 
-    ```py
+    ```py {extra_opts}
 {code}
     ```
 
@@ -107,21 +107,23 @@ class TermagePlugin(BasePlugin):
 
         opt_dict = {key: self.config.get(key, None) for key in OPTS}
 
+        extra_opts = ""
+
         for option in re.split(r"(?<!\\) ", options):
             if len(option) == 0:
                 continue
 
             try:
                 key, value = option.split("=")
-            except ValueError as error:
-                raise ValueError(f"Invalid key=value pair {option!r}.") from error
+            except ValueError:
+                extra_opts += " " + option
+                continue
 
             value = value.replace("\\", "")
 
             if key not in opt_dict:
-                raise ValueError(
-                    f"Unexpected key {key!r}. Please choose from {list(opt_dict)!r}."
-                )
+                extra_opts += " " + option
+                continue
 
             original = opt_dict[key]
             if isinstance(original, bool):
@@ -135,7 +137,7 @@ class TermagePlugin(BasePlugin):
 
             opt_dict[key] = value
 
-        return TermageOptions(**opt_dict)  # type: ignore
+        return TermageOptions(**opt_dict), extra_opts  # type: ignore
 
     def _replace_codeblock(self, matchobj: Match) -> str:
         """Replaces a codeblock with Termage content."""
@@ -148,7 +150,7 @@ class TermagePlugin(BasePlugin):
 {indent}```termage{svg_only or ''}{options}
 {code}```"""
 
-        opts = self._parse_opts(options)
+        opts, extra_opts = self._parse_opts(options)
 
         if opts.include is not None:
             with open(opts.include, "r", encoding="utf-8") as include_file:
@@ -212,6 +214,7 @@ class TermagePlugin(BasePlugin):
         indent += 4 * " "
 
         return template.format(
+            extra_opts=extra_opts,
             code_tab_name=opts.tabs[0],
             svg_tab_name=opts.tabs[1],
             code="\n".join(indent + line for line in display_code),
