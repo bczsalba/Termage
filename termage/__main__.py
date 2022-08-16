@@ -76,6 +76,13 @@ def _process_args(argv: list[str] | None) -> Namespace:
         help="Highlights the given code, instead of running it.",
     )
 
+    parser.add_argument(
+        "--run",
+        metavar="FILE",
+        type=Path,
+        help="Emulates running a file through the MkDocs plugin.",
+    )
+
     parser.add_argument("--fg", help="Sets the foreground color.", metavar="COLOR")
     parser.add_argument("--bg", help="Sets the background color.", metavar="COLOR")
 
@@ -86,6 +93,16 @@ def main(argv: list[str] | None = None) -> None:
     """Executes the project."""
 
     args = _process_args(argv)
+
+    if args.run:
+        with open(args.run, "r") as runfile:
+            # TODO: This should be done in a central location
+            code = runfile.read().replace("&", "")
+            from pytermgui import highlight_python, tim
+
+            tim.print(highlight_python(code))
+            execute(code=code)
+        return
 
     if args.code is None and not sys.stdin.isatty():
         args.code = sys.stdin.read()

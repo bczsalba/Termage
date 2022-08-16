@@ -2,7 +2,7 @@
 
 ### Additions
 
-- Add inject `termage` module into execution namespace to allow manipulating the
+- Inject `termage` mock-module into execution namespace to allow manipulating the
   terminal instance.
 
 ### Bugfixes
