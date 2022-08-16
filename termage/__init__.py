@@ -5,7 +5,7 @@ from .__main__ import main
 
 from . import mkdocs_plugin
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"
 
 
 def termage(code: str, **kwargs) -> str | None:

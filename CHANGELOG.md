@@ -1,3 +1,13 @@
+## [0.5.0] - 2022-08-16
+
+### Additions
+
+- Support inserting unhandled plugin arguments into formatted markdown
+- Add `--run` argument
+
+<!-- HATCH README END -->
+
+
 ## [0.4.0] - 2022-08-13
 
 ### Additions
@@ -10,7 +20,6 @@
 - Fix the target width used for line-breaking not updating per `_write` call
 - Fix `title` parameter defaulting (and showing) `None`
 
-<!-- HATCH README END -->
 
 ## [0.3.2] - 2022-08-11
 
@@ -53,6 +62,7 @@
 
 
 <!-- HATCH URI DEFINITIONS START -->
+[0.5.0]: https://github.com/bczsalba/termage/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/bczsalba/termage/compare/0.3.2...0.4.0
 [0.3.2]: https://github.com/bczsalba/termage/compare/0.3.1...0.3.2
 [0.3.1]: https://github.com/bczsalba/termage/compare/0.3.0...0.3.1
