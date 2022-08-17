@@ -89,7 +89,7 @@ def _process_args(argv: list[str] | None) -> Namespace:
     return parser.parse_args(argv)
 
 
-def main(argv: list[str] | None = None) -> None:
+def main(argv: list[str] | None = None, *, no_print: bool = False) -> None:
     """Executes the project."""
 
     args = _process_args(argv)
@@ -116,7 +116,12 @@ def main(argv: list[str] | None = None) -> None:
         execute(args.module, args.file, args.code, args.highlight)
 
     if args.out is None:
-        print(recorder.export_svg(title=args.title, inline_styles=True))
+        content = recorder.export_svg(title=args.title, inline_styles=True)
+
+        if no_print:
+            return content
+
+        print(content)
         return
 
     recorder.save_svg(

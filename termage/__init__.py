@@ -22,4 +22,4 @@ def termage(code: str, **kwargs) -> str | None:
     for key, value in kwargs.items():
         args.extend([f"--{key}", str(value)])
 
-    main(args)
+    return main(args, no_print=True)
