@@ -6,6 +6,12 @@ Other than the ones listed below, the MkDocs plugin exposes a couple of configur
 
 Write files during generation, instead of inserting their contents directly into the HTML.
 
+!!! warning ""
+
+    This setting, when used during `mkdocs serve`, can and likely will cause infinite reload-loops at the first file change. This is due to `assets/` (the default path) being watched by MkDocs' livereload implementation, so every time the docs regenerate, we generate SVGs which then triggers another reload.
+
+    The only way I've found around this issue was by allowing inline SVG insertions, though it shoulnd't be a problem if you don't use `serve` or run it with `--no-livereload`.
+
 **Default**: `False`
 
 ### `inline_style`
