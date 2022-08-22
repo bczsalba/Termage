@@ -1,11 +1,24 @@
+## [0.6.0] - 2022-08-22
+
+### Additions
+
+- Add support for inserting SVGs inline, without writing files
+
+### Refactors
+
+- Unify the codeblock-formatting API under `execution.format_codeblock`
+- Rewrite & refactor most of the plugin to be more maintainable
+- Refactor the Python API so that the `termage` function is called by the CLI, not the other way around.
+
+<!-- HATCH README END -->
+
+
 ## [0.5.0] - 2022-08-16
 
 ### Additions
 
 - Support inserting unhandled plugin arguments into formatted markdown
 - Add `--run` argument
-
-<!-- HATCH README END -->
 
 
 ## [0.4.0] - 2022-08-13
@@ -62,6 +75,7 @@
 
 
 <!-- HATCH URI DEFINITIONS START -->
+[0.6.0]: https://github.com/bczsalba/termage/compare/0.5.0...0.6.0
 [0.5.0]: https://github.com/bczsalba/termage/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/bczsalba/termage/compare/0.3.2...0.4.0
 [0.3.2]: https://github.com/bczsalba/termage/compare/0.3.1...0.3.2
