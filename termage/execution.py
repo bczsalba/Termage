@@ -16,6 +16,15 @@ import pytermgui as ptg
 DEFAULT_WIDTH = 80
 DEFAULT_HEIGHT = 24
 
+__all__ = [
+    "execute",
+    "EXEC_GLOBALS",
+    "format_codeblock",
+    "patched_stdout_recorder",
+    "set_colors",
+    "termage",
+]
+
 
 def format_codeblock(block: str) -> tuple[str, str]:
     """Formats a codeblock into display and executed lines."""
@@ -38,7 +47,14 @@ def format_codeblock(block: str) -> tuple[str, str]:
 
 
 class TermageNamespace:
-    """A simple namespace for exec globals, exposed as `termage`."""
+    """A simple namespace for exec globals, exposed as `termage`.
+
+    You can use all below methods by referencing the `termage` object
+    in termage-run code, which you don't have to import.
+
+    You _usually_ want to hide these lines, as they are generally for
+    styling purposes.
+    """
 
     @property
     def terminal(self) -> ptg.Terminal:
@@ -71,10 +87,17 @@ EXEC_GLOBALS: dict[str, Any] = {
 def patched_stdout_recorder(
     width: int | None, height: int | None
 ) -> Generator[ptg.Recorder, None, None]:
-    """Patches sys.stdout.write to write to a new terminal.
+    """Records everything written to stdout, even built is print.
+
+    It does so by monkeypathing `sys.stdout.write` to a custom function,
+    which first writes to a custom `Terminal`.
+
+    Args:
+        width: The width of the terminal used for the recording.
+        height: The height of the terminal used for the recording.
 
     Returns:
-        The recorder that was written to.
+        The recorder object, with all the data written to it.
     """
 
     if width is None:
@@ -113,26 +136,35 @@ def patched_stdout_recorder(
 
 
 def execute(
-    module: str | None = None,
-    file: Path | None = None,
     code: str | None = None,
-    highlight: bool = None,
+    file: Path | None = None,
+    highlight: bool = False,
     *,
     exec_globals: dict[str, Any] = EXEC_GLOBALS,
 ) -> None:
-    """Executes the given code."""
+    """Executes the given code under a custom context.
+
+    Args:
+        code: The Python code to execute.
+        file: A file that will be opened, and its contents will
+            be added to the executed code *before* the `code` argument.
+        highlight: If set, the combined code will only be highlighted using
+            PyTermGUI's `highlight_python` function, with that result being
+            written to the SVG. Great for quick code screenshots!
+        exec_globals: The dictionary that will be passed to `exec`, which
+            makes it the global namespace of the context.
+    """
 
     ptg.WindowManager.autorun = False
 
     exec_globals = exec_globals.copy()
     code = code or ""
 
-    if module is not None:
-        # mod_name, *args = module.split()
-        # sys.argv = [*args]
-        # out = runpy.run_module(mod_name, init_globals={"sys": sys})
-        # print(out)
-        raise NotImplementedError("Module execution is not yet implemented.")
+    # if module is not None:
+    # mod_name, *args = module.split()
+    # sys.argv = [*args]
+    # out = runpy.run_module(mod_name, init_globals={"sys": sys})
+    # print(out)
 
     if file is not None:
         with open(file, "r", encoding="utf-8") as source:
@@ -143,6 +175,7 @@ def execute(
         return exec_globals
 
     exec(code, exec_globals)
+    sys.argv = old_argv
 
     if "manager" in exec_globals:
         exec_globals["manager"].compositor.draw()
@@ -172,13 +205,26 @@ def termage(  # pylint: disable=too-many-arguments
     highlight_only: bool = False,
     save_as: str | Path | None = None,
 ) -> str:
-    """Executes CLI with the given (long-form) arguments.
+    """A generalized wrapper for Termage functionality.
 
-    To see all arguments, check out the docs.
+    Args:
+        code: The code that will be run to generate the file.
+        include: A path to a Python file that will be included before `code`.
+        width: The output terminal's width.
+        height: The output terminal's height.
+        title: The output terminal's window title. Has no effect when `chrome`
+            is `False`.
+        chrome: Shows or hides the window decorations.
+        foreground: Sets the default foreground (text) style of the output. Only
+            applies to unstyled text.
+        background: Sets the output terminal's background color.
+        highlight_only: If set, the given code is not run, rather given to the
+            `ptg.highlight_python` function.
+        save_as: If set, the export will be written to this filepath. The export
+            will be returned regardless of this setting.
 
     Returns:
-        The generated SVG if the `out` parameter is not given, else
-        None, after writing output to `out`.
+        The exported SVG file.
     """
 
     set_colors(foreground, background)

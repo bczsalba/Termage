@@ -1,4 +1,4 @@
-site_name: docs::Termage
+site_name: Termage::docs
 
 theme:
   name: material
@@ -9,7 +9,8 @@ theme:
     text: Open Sans
 
   features:
-  - content.code.annotate
+    - navigation.tabs
+    - content.code.annotate
 
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -30,7 +31,28 @@ theme:
 
 plugins:
   - search
-  - termage
+  - gen-files:
+      scripts:
+        - docs/gen_ref_nav.py
+
+  - literate-nav:
+      nav_file: SUMMARY.md
+
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [termage]
+          options:
+            docstring_style: google
+            docstring_options:
+              ignore_init_summary: yes
+              merge_init_into_class: yes
+              show_submodules: no
+
+  - termage:
+      # MkDocs Material's theme colors
+      background: "#21222C"
+      foreground: "#D5D7E2"
 
 repo_url: https://github.com/bczsalba/termage
 repo_name: bczsalba/termage
@@ -41,11 +63,15 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.details
   - pymdownx.snippets
+  - pymdownx.inlinehilite
   - pymdownx.tabbed:
       alternate_style: true
 
 nav:
-  - Introduction: index.md
-  - Options: options.md
-  - In the command line: cli.md
-  - As an MkDocs plugin: plugin.md
+  - Termage:
+    - Introduction: index.md
+    - Options: options.md
+    - In the command line: cli.md
+    - As an MkDocs plugin: plugin.md
+
+  - Reference: reference/

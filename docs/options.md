@@ -1,3 +1,47 @@
+## MkDocs plugin config options
+
+Other than the ones listed below, the MkDocs plugin exposes a couple of configuration options.
+
+### `write_files`
+
+Write files during generation, instead of inserting their contents directly into the HTML.
+
+**Default**: `False`
+
+### `inline_style`
+
+<!-- TODO: Add reference link when available -->
+Controls the PyTermGUI SVG export option of the same name. When set, element styles will be applied as `style=` attributes, instead of as classes defined earlier in the export.
+
+**Default**: `True`
+
+### `path`
+
+Sets the path that output files will be written to. This path must be relative to `docs/`, NOT to the root of the repository.
+
+**Requires**: `#!py3 write_files == True`
+
+**Default**: `assets/`
+
+### `name_template`
+
+
+Controls the template string used to generate filenames. Templated variables available are:
+
+- `count`: The generation-index of the given SVG
+- `title`: The title passed as an option of the SVG.
+
+!!! warning
+    Since `title` may be empty, you should always include `count` in your template to avoid filename overlaps (and lost files).
+
+
+**Requires**: `#!py3 write_files == True`
+
+**Default**: `termage_{count}.svg`
+
+
+## General (Python & MkDocs) options
+
 Regardless of your entrypoint, the options available are going to be the same.
 
 
