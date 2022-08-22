@@ -4,12 +4,12 @@
 
 from __future__ import annotations
 
-import sys
 import builtins
+import sys
+from contextlib import contextmanager
 from io import StringIO
 from pathlib import Path
-from typing import Generator, Any
-from contextlib import contextmanager
+from typing import Any, Generator
 
 import pytermgui as ptg
 

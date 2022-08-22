@@ -1,12 +1,14 @@
+"""A plugin for MkDocs that allows generating & inserting SVGs using Termage."""
+
 from __future__ import annotations
 
 import re
-from typing import Match
-from pathlib import Path
 from dataclasses import dataclass
+from pathlib import Path
+from typing import Match
 
-from mkdocs.plugins import BasePlugin
 from mkdocs.config.config_options import Type
+from mkdocs.plugins import BasePlugin
 
 from .execution import execute, format_codeblock, patched_stdout_recorder, set_colors
 

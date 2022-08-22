@@ -6,16 +6,12 @@ See `termage -h` for more info.
 from __future__ import annotations
 
 import sys
-from pathlib import Path
 from argparse import ArgumentParser, Namespace
+from pathlib import Path
 
-from .execution import (
-    execute,
-    format_codeblock,
-    patched_stdout_recorder,
-    termage,
-    set_colors,
-)
+from pytermgui import highlight_python, tim
+
+from .execution import execute, format_codeblock, termage
 
 
 def _process_args(argv: list[str] | None) -> Namespace:
@@ -95,20 +91,21 @@ def _process_args(argv: list[str] | None) -> Namespace:
     return parser.parse_args(argv)
 
 
-def main(argv: list[str] | None = None, *, no_print: bool = False) -> None:
+def main(argv: list[str] | None = None) -> None:
     """Executes the project."""
 
     args = _process_args(argv)
 
     if args.run:
-        with open(args.run, "r") as runfile:
+        with open(args.run, "r", encoding="utf-8") as runfile:
             # TODO: This should be done in a central location
-            code_disp, code_exec = format_codeblock(runfile.read())
-            from pytermgui import highlight_python, tim
+            _, code_exec = format_codeblock(runfile.read())
 
             tim.print(highlight_python(code_exec))
             print()
+
             execute(code=code_exec)
+
         return
 
     if args.code is None and not sys.stdin.isatty():
