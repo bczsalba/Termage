@@ -13,7 +13,7 @@
     
     
       
-        <title>docs::Termage</title>
+        <title>Introduction - Termage::docs</title>
       
     
     
@@ -34,6 +34,8 @@
         <style>:root{--md-text-font:"Open Sans";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
     
     <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -77,7 +79,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="docs::Termage" class="md-header__button md-logo" aria-label="docs::Termage" data-md-component="logo">
+    <a href="." title="Termage::docs" class="md-header__button md-logo" aria-label="Termage::docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -90,7 +92,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            docs::Termage
+            Termage::docs
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -182,6 +184,56 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="." class="md-tabs__link md-tabs__link--active">
+        Termage
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="reference/termage/" class="md-tabs__link">
+        Reference
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -194,16 +246,18 @@
                   <div class="md-sidebar__inner">
                     
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="docs::Termage" class="md-nav__button md-logo" aria-label="docs::Termage" data-md-component="logo">
+    <a href="." title="Termage::docs" class="md-nav__button md-logo" aria-label="Termage::docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
-    docs::Termage
+    Termage::docs
   </label>
   
     <div class="md-nav__source">
@@ -224,6 +278,34 @@
       
       
 
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Termage
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Termage" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Termage
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
   
   
     
@@ -271,11 +353,10 @@
     </li>
   
 
-    
-      
-      
-      
-
+            
+          
+            
+              
   
   
   
@@ -286,11 +367,10 @@
     </li>
   
 
-    
-      
-      
-      
-
+            
+          
+            
+              
   
   
   
@@ -298,6 +378,27 @@
       <a href="cli/" class="md-nav__link">
         In the command line
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="plugin/" class="md-nav__link">
+        As an MkDocs plugin
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -309,10 +410,104 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          termage
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="termage" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          termage
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="plugin/" class="md-nav__link">
-        As an MkDocs plugin
+      <a href="reference/termage/" class="md-nav__link">
+        Index
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/termage/execution/" class="md-nav__link">
+        execution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/termage/mkdocs_plugin/" class="md-nav__link">
+        mkdocs_plugin
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -412,12 +607,194 @@
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<p><p align="center">
-<img src="/assets/termage_1.svg" alt="Hey there!" >
-</p></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="784.0" height="565.4" viewBox="0 0 784.0 565.4">
+<!-- Generated by PyTermGUI -->
+<style type="text/css">
+    text.termage-0 {
+        font-size: 15px;
+        font-family: Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
+        font-feature-settings: normal;
+        /* Inline SVGs are `antialiased` by default, while `src=`-d ones are `auto`.*/
+        -webkit-font-smoothing: auto;
+    }
+    .termage-0-title {
+        font-family: 'arial';
+        fill: #94999A;
+        font-size: 13px;
+        font-weight: bold;
+    }
+</style>
+<g>
+    <rect x="0" y="20" rx="9px" ry="9px" stroke-width="1px" stroke-linejoin="round" width="784.0" height="525.4" fill="#21222c"/>
+    <circle cx="15" cy="35" r="6" fill="#ff6159"/>
+    <circle cx="35" cy="35" r="6" fill="#ffbd2e"/>
+    <circle cx="55" cy="35" r="6" fill="#28c941"/>
+    <text x="392.0" y="38.975" text-anchor="middle" class="termage-0-title">Hey there!</text>
+</g>
+<g transform="translate(20, 55)">
+    <rect x="0.0" y="-3.23" fill="#21222c" width="104.35" height="19.35"/>
+    <text dy="-0.25em" x="0.0" y="15.0" textLength="102.3" class="termage-0" style="fill:#d5d7e2">Welcome to </text>
+    <rect x="102.3" y="-3.23" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="102.3" y="15.0" textLength="9.3" class="termage-0" style="font-weight: bold;fill:#00d700">T</text>
+    <rect x="111.6" y="-3.23" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="111.6" y="15.0" textLength="9.3" class="termage-0" style="font-weight: bold;fill:#5fd700">e</text>
+    <rect x="120.9" y="-3.23" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="120.9" y="15.0" textLength="9.3" class="termage-0" style="font-weight: bold;fill:#87d700">r</text>
+    <rect x="130.2" y="-3.23" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="130.2" y="15.0" textLength="9.3" class="termage-0" style="font-weight: bold;fill:#afd700">m</text>
+    <rect x="139.5" y="-3.23" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="139.5" y="15.0" textLength="9.3" class="termage-0" style="font-weight: bold;fill:#d7d700">a</text>
+    <rect x="148.8" y="-3.23" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="148.8" y="15.0" textLength="18.6" class="termage-0" style="font-weight: bold;fill:#ffd700">ge</text>
+    <rect x="167.4" y="-3.23" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="167.4" y="15.0" textLength="9.3" class="termage-0" style="fill:#d5d7e2">!</text>
+    <rect x="0" y="18.98" fill="#21222c" width="0.0" height="19.35"/>
+    <text dy="-0.25em" x="0" y="33.98" textLength="0.0" class="termage-0" style="fill:#d5d7e2"/>
+    <rect x="0" y="34.72" fill="#21222c" width="284.58" height="19.35"/>
+    <text dy="-0.25em" x="0" y="52.95" textLength="279.0" class="termage-0" style="fill:#d5d7e2">Termage allows you to display </text>
+    <rect x="279.0" y="34.72" fill="#21222c" width="28.46" height="19.35"/>
+    <text dy="-0.25em" x="279.0" y="52.95" textLength="27.9" class="termage-0" style="font-style: italic;fill:#d5d7e2">any</text>
+    <rect x="306.9" y="34.72" fill="#21222c" width="388.93" height="19.35"/>
+    <text dy="-0.25em" x="306.9" y="52.95" textLength="381.3" class="termage-0" style="fill:#d5d7e2"> terminal output in a terminal-mimicking </text>
+    <rect x="688.2" y="34.72" fill="#21222c" width="28.46" height="19.35"/>
+    <text dy="-0.25em" x="688.2" y="52.95" textLength="27.9" class="termage-0" style="font-weight: bold;fill:#d5d7e2">SVG</text>
+    <rect x="716.1" y="34.72" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="716.1" y="52.95" textLength="9.3" class="termage-0" style="font-weight: bold;fill:#d5d7e2">!</text>
+    <rect x="725.4" y="37.95" fill="#21222c" width="0.0" height="19.35"/>
+    <text dy="-0.25em" x="725.4" y="52.95" textLength="0.0" class="termage-0" style="fill:#d5d7e2"/>
+    <rect x="0" y="56.93" fill="#21222c" width="0.0" height="19.35"/>
+    <text dy="-0.25em" x="0" y="71.93" textLength="0.0" class="termage-0" style="fill:#d5d7e2"/>
+    <rect x="0" y="72.67" fill="#21222c" width="265.61" height="19.35"/>
+    <text dy="-0.25em" x="0" y="90.9" textLength="260.4" class="termage-0" style="fill:#d5d7e2">Here are the current locals:</text>
+    <rect x="260.4" y="75.9" fill="#21222c" width="0.0" height="19.35"/>
+    <text dy="-0.25em" x="260.4" y="90.9" textLength="0.0" class="termage-0" style="fill:#d5d7e2"/>
+    <rect x="0" y="91.65" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="0" y="109.88" textLength="9.3" class="termage-0" style="fill:#d5d7e2">{</text>
+    <rect x="0" y="110.62" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="0" y="128.85" textLength="18.6" class="termage-0" style="fill:#d5d7e2">  </text>
+    <rect x="18.6" y="110.62" fill="#21222c" width="94.86" height="19.35"/>
+    <text dy="-0.25em" x="18.6" y="128.85" textLength="93.0" class="termage-0" style="fill:#afaf00">'__name__'</text>
+    <rect x="111.6" y="110.62" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="111.6" y="128.85" textLength="18.6" class="termage-0" style="fill:#d5d7e2">: </text>
+    <rect x="130.2" y="110.62" fill="#21222c" width="94.86" height="19.35"/>
+    <text dy="-0.25em" x="130.2" y="128.85" textLength="93.0" class="termage-0" style="fill:#afaf00">'__main__'</text>
+    <rect x="223.2" y="110.62" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="223.2" y="128.85" textLength="18.6" class="termage-0" style="fill:#d5d7e2">, </text>
+    <rect x="0" y="129.6" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="0" y="147.82" textLength="18.6" class="termage-0" style="fill:#d5d7e2">  </text>
+    <rect x="18.6" y="129.6" fill="#21222c" width="85.37" height="19.35"/>
+    <text dy="-0.25em" x="18.6" y="147.82" textLength="83.7" class="termage-0" style="fill:#afaf00">'__doc__'</text>
+    <rect x="102.3" y="129.6" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="102.3" y="147.82" textLength="18.6" class="termage-0" style="fill:#d5d7e2">: </text>
+    <rect x="120.9" y="129.6" fill="#21222c" width="37.94" height="19.35"/>
+    <text dy="-0.25em" x="120.9" y="147.82" textLength="37.2" class="termage-0" style="fill:#ff5f5f">None</text>
+    <rect x="158.1" y="129.6" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="158.1" y="147.82" textLength="18.6" class="termage-0" style="fill:#d5d7e2">, </text>
+    <rect x="0" y="148.57" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="0" y="166.8" textLength="18.6" class="termage-0" style="fill:#d5d7e2">  </text>
+    <rect x="18.6" y="148.57" fill="#21222c" width="123.32" height="19.35"/>
+    <text dy="-0.25em" x="18.6" y="166.8" textLength="120.9" class="termage-0" style="fill:#afaf00">'__package__'</text>
+    <rect x="139.5" y="148.57" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="139.5" y="166.8" textLength="18.6" class="termage-0" style="fill:#d5d7e2">: </text>
+    <rect x="158.1" y="148.57" fill="#21222c" width="37.94" height="19.35"/>
+    <text dy="-0.25em" x="158.1" y="166.8" textLength="37.2" class="termage-0" style="fill:#ff5f5f">None</text>
+    <rect x="195.3" y="148.57" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="195.3" y="166.8" textLength="18.6" class="termage-0" style="fill:#d5d7e2">, </text>
+    <rect x="0" y="167.55" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="0" y="185.77" textLength="18.6" class="termage-0" style="fill:#d5d7e2">  </text>
+    <rect x="18.6" y="167.55" fill="#21222c" width="161.26" height="19.35"/>
+    <text dy="-0.25em" x="18.6" y="185.77" textLength="158.1" class="termage-0" style="fill:#afaf00">'__annotations__'</text>
+    <rect x="176.7" y="167.55" fill="#21222c" width="37.94" height="19.35"/>
+    <text dy="-0.25em" x="176.7" y="185.77" textLength="37.2" class="termage-0" style="fill:#d5d7e2">: {}</text>
+    <rect x="213.9" y="167.55" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="213.9" y="185.77" textLength="18.6" class="termage-0" style="fill:#d5d7e2">, </text>
+    <rect x="0" y="186.52" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="0" y="204.75" textLength="18.6" class="termage-0" style="fill:#d5d7e2">  </text>
+    <rect x="18.6" y="186.52" fill="#21222c" width="132.8" height="19.35"/>
+    <text dy="-0.25em" x="18.6" y="204.75" textLength="130.2" class="termage-0" style="fill:#afaf00">'__builtins__'</text>
+    <rect x="148.8" y="186.52" fill="#21222c" width="28.46" height="19.35"/>
+    <text dy="-0.25em" x="148.8" y="204.75" textLength="27.9" class="termage-0" style="fill:#d5d7e2">: &lt;</text>
+    <rect x="176.7" y="186.52" fill="#21222c" width="56.92" height="19.35"/>
+    <text dy="-0.25em" x="176.7" y="204.75" textLength="55.8" class="termage-0" style="fill:#ff5f5f">module</text>
+    <rect x="232.5" y="186.52" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="232.5" y="204.75" textLength="9.3" class="termage-0" style="fill:#d5d7e2"> </text>
+    <rect x="241.8" y="186.52" fill="#21222c" width="94.86" height="19.35"/>
+    <text dy="-0.25em" x="241.8" y="204.75" textLength="93.0" class="termage-0" style="fill:#afaf00">'builtins'</text>
+    <rect x="334.8" y="186.52" fill="#21222c" width="132.8" height="19.35"/>
+    <text dy="-0.25em" x="334.8" y="204.75" textLength="130.2" class="termage-0" style="fill:#d5d7e2"> (built-in)&gt;, </text>
+    <rect x="0" y="205.5" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="0" y="223.72" textLength="18.6" class="termage-0" style="fill:#d5d7e2">  </text>
+    <rect x="18.6" y="205.5" fill="#21222c" width="85.37" height="19.35"/>
+    <text dy="-0.25em" x="18.6" y="223.72" textLength="83.7" class="termage-0" style="fill:#afaf00">'termage'</text>
+    <rect x="102.3" y="205.5" fill="#21222c" width="199.21" height="19.35"/>
+    <text dy="-0.25em" x="102.3" y="223.72" textLength="195.3" class="termage-0" style="fill:#d5d7e2">: &lt;termage.execution.</text>
+    <rect x="297.6" y="205.5" fill="#21222c" width="151.78" height="19.35"/>
+    <text dy="-0.25em" x="297.6" y="223.72" textLength="148.8" class="termage-0" style="fill:#ffaf00">TermageNamespace</text>
+    <rect x="446.4" y="205.5" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="446.4" y="223.72" textLength="9.3" class="termage-0" style="fill:#d5d7e2"> </text>
+    <rect x="455.7" y="205.5" fill="#21222c" width="56.92" height="19.35"/>
+    <text dy="-0.25em" x="455.7" y="223.72" textLength="55.8" class="termage-0" style="fill:#ffaf00">object</text>
+    <rect x="511.5" y="205.5" fill="#21222c" width="37.94" height="19.35"/>
+    <text dy="-0.25em" x="511.5" y="223.72" textLength="37.2" class="termage-0" style="fill:#d5d7e2"> at </text>
+    <rect x="548.7" y="205.5" fill="#21222c" width="104.35" height="19.35"/>
+    <text dy="-0.25em" x="548.7" y="223.72" textLength="102.3" class="termage-0" style="fill:#d787af">0x102b03910</text>
+    <rect x="651.0" y="205.5" fill="#21222c" width="28.46" height="19.35"/>
+    <text dy="-0.25em" x="651.0" y="223.72" textLength="27.9" class="termage-0" style="fill:#d5d7e2">&gt;, </text>
+    <rect x="0" y="224.47" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="0" y="242.7" textLength="18.6" class="termage-0" style="fill:#d5d7e2">  </text>
+    <rect x="18.6" y="224.47" fill="#21222c" width="47.43" height="19.35"/>
+    <text dy="-0.25em" x="18.6" y="242.7" textLength="46.5" class="termage-0" style="fill:#afaf00">'tim'</text>
+    <rect x="65.1" y="224.47" fill="#21222c" width="275.09" height="19.35"/>
+    <text dy="-0.25em" x="65.1" y="242.7" textLength="269.7" class="termage-0" style="fill:#d5d7e2">: &lt;pytermgui.markup.language.</text>
+    <rect x="334.8" y="224.47" fill="#21222c" width="132.8" height="19.35"/>
+    <text dy="-0.25em" x="334.8" y="242.7" textLength="130.2" class="termage-0" style="fill:#ffaf00">MarkupLanguage</text>
+    <rect x="465.0" y="224.47" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="465.0" y="242.7" textLength="9.3" class="termage-0" style="fill:#d5d7e2"> </text>
+    <rect x="474.3" y="224.47" fill="#21222c" width="56.92" height="19.35"/>
+    <text dy="-0.25em" x="474.3" y="242.7" textLength="55.8" class="termage-0" style="fill:#ffaf00">object</text>
+    <rect x="530.1" y="224.47" fill="#21222c" width="37.94" height="19.35"/>
+    <text dy="-0.25em" x="530.1" y="242.7" textLength="37.2" class="termage-0" style="fill:#d5d7e2"> at </text>
+    <rect x="567.3" y="224.47" fill="#21222c" width="104.35" height="19.35"/>
+    <text dy="-0.25em" x="567.3" y="242.7" textLength="102.3" class="termage-0" style="fill:#d787af">0x102c612e0</text>
+    <rect x="669.6" y="224.47" fill="#21222c" width="28.46" height="19.35"/>
+    <text dy="-0.25em" x="669.6" y="242.7" textLength="27.9" class="termage-0" style="fill:#d5d7e2">&gt;, </text>
+    <rect x="0" y="243.45" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="0" y="261.67" textLength="18.6" class="termage-0" style="fill:#d5d7e2">  </text>
+    <rect x="18.6" y="243.45" fill="#21222c" width="123.32" height="19.35"/>
+    <text dy="-0.25em" x="18.6" y="261.67" textLength="120.9" class="termage-0" style="fill:#afaf00">'ColorPicker'</text>
+    <rect x="139.5" y="243.45" fill="#21222c" width="28.46" height="19.35"/>
+    <text dy="-0.25em" x="139.5" y="261.67" textLength="27.9" class="termage-0" style="fill:#d5d7e2">: &lt;</text>
+    <rect x="167.4" y="243.45" fill="#21222c" width="47.43" height="19.35"/>
+    <text dy="-0.25em" x="167.4" y="261.67" textLength="46.5" class="termage-0" style="fill:#ff5f5f">class</text>
+    <rect x="213.9" y="243.45" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="213.9" y="261.67" textLength="9.3" class="termage-0" style="fill:#d5d7e2"> </text>
+    <rect x="223.2" y="243.45" fill="#21222c" width="417.38" height="19.35"/>
+    <text dy="-0.25em" x="223.2" y="261.67" textLength="409.2" class="termage-0" style="fill:#afaf00">'pytermgui.widgets.color_picker.ColorPicker'</text>
+    <rect x="632.4" y="243.45" fill="#21222c" width="28.46" height="19.35"/>
+    <text dy="-0.25em" x="632.4" y="261.67" textLength="27.9" class="termage-0" style="fill:#d5d7e2">&gt;, </text>
+    <rect x="0" y="262.42" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="0" y="280.65" textLength="18.6" class="termage-0" style="fill:#d5d7e2">  </text>
+    <rect x="18.6" y="262.42" fill="#21222c" width="66.4" height="19.35"/>
+    <text dy="-0.25em" x="18.6" y="280.65" textLength="65.1" class="termage-0" style="fill:#afaf00">'print'</text>
+    <rect x="83.7" y="262.42" fill="#21222c" width="28.46" height="19.35"/>
+    <text dy="-0.25em" x="83.7" y="280.65" textLength="27.9" class="termage-0" style="fill:#d5d7e2">: &lt;</text>
+    <rect x="111.6" y="262.42" fill="#21222c" width="75.89" height="19.35"/>
+    <text dy="-0.25em" x="111.6" y="280.65" textLength="74.4" class="termage-0" style="fill:#ff5f5f">function</text>
+    <rect x="186.0" y="262.42" fill="#21222c" width="104.35" height="19.35"/>
+    <text dy="-0.25em" x="186.0" y="280.65" textLength="102.3" class="termage-0" style="fill:#d5d7e2"> pprint at </text>
+    <rect x="288.3" y="262.42" fill="#21222c" width="104.35" height="19.35"/>
+    <text dy="-0.25em" x="288.3" y="280.65" textLength="102.3" class="termage-0" style="fill:#d787af">0x102df1dc0</text>
+    <rect x="390.6" y="262.42" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="390.6" y="280.65" textLength="9.3" class="termage-0" style="fill:#d5d7e2">&gt;</text>
+    <rect x="0" y="281.4" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="0" y="299.62" textLength="9.3" class="termage-0" style="fill:#d5d7e2">}</text>
+    <rect x="9.3" y="284.62" fill="#21222c" width="0.0" height="19.35"/>
+    <text dy="-0.25em" x="9.3" y="299.62" textLength="0.0" class="termage-0" style="fill:#d5d7e2"/>
+</g></p>
 </div>
 </div>
 </div>
+<p></svg></p>
 <h2 id="installation">Installation</h2>
 <p><code>Termage</code> is best installed using <code>pip</code>:</p>
 <div class="highlight"><pre><span></span><code>$ pip install termage
@@ -439,12 +816,140 @@
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<p><p align="center">
-<img src="/assets/termage_2.svg" alt="My SVG" >
-</p></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="821.2" height="394.625" viewBox="0 0 821.2 394.625">
+<!-- Generated by PyTermGUI -->
+<style type="text/css">
+    text.termage-1 {
+        font-size: 15px;
+        font-family: Menlo, 'DejaVu Sans Mono', consolas, 'Courier New', monospace;
+        font-feature-settings: normal;
+        /* Inline SVGs are `antialiased` by default, while `src=`-d ones are `auto`.*/
+        -webkit-font-smoothing: auto;
+    }
+    .termage-1-title {
+        font-family: 'arial';
+        fill: #94999A;
+        font-size: 13px;
+        font-weight: bold;
+    }
+</style>
+<g>
+    <rect x="0" y="20" rx="9px" ry="9px" stroke-width="1px" stroke-linejoin="round" width="821.2" height="354.625" fill="#21222c"/>
+    <circle cx="15" cy="35" r="6" fill="#ff6159"/>
+    <circle cx="35" cy="35" r="6" fill="#ffbd2e"/>
+    <circle cx="55" cy="35" r="6" fill="#28c941"/>
+    <text x="410.0" y="38.975" text-anchor="middle" class="termage-1-title">My SVG</text>
+</g>
+<g transform="translate(20, 55)">
+    <rect x="-0.7" y="0.75" fill="#21222c" width="398.41" height="19.35"/>
+    <text dy="-0.25em" x="-0.7" y="18.98" textLength="390.6" class="termage-1" style="fill:#d5d7e2">                                          </text>
+    <rect x="389.9" y="0.75" fill="#21222c" width="398.41" height="19.35"/>
+    <text dy="-0.25em" x="389.9" y="18.98" textLength="390.6" class="termage-1" style="fill:#d5d7e2">                                          </text>
+    <rect x="-0.7" y="19.72" fill="#21222c" width="398.41" height="19.35"/>
+    <text dy="-0.25em" x="-0.7" y="37.95" textLength="390.6" class="termage-1" style="fill:#d5d7e2">                                          </text>
+    <rect x="389.9" y="19.72" fill="#21222c" width="398.41" height="19.35"/>
+    <text dy="-0.25em" x="389.9" y="37.95" textLength="390.6" class="termage-1" style="fill:#d5d7e2">                                          </text>
+    <rect x="-0.7" y="38.7" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="-0.7" y="56.93" textLength="9.3" class="termage-1" style="fill:#3f4350">┌</text>
+    <rect x="8.6" y="38.7" fill="#21222c" width="777.85" height="19.35"/>
+    <text dy="-0.25em" x="8.6" y="56.93" textLength="762.6" class="termage-1" style="fill:#3f4350">──────────────────────────────────────────────────────────────────────────────────</text>
+    <rect x="771.2" y="38.7" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="771.2" y="56.93" textLength="9.3" class="termage-1" style="fill:#3f4350">┐</text>
+    <rect x="-0.7" y="57.67" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="-0.7" y="75.9" textLength="18.6" class="termage-1" style="fill:#3f4350">│ </text>
+    <rect x="17.9" y="57.67" fill="#21222c" width="256.12" height="19.35"/>
+    <text dy="-0.25em" x="17.9" y="75.9" textLength="251.1" class="termage-1" style="fill:#d5d7e2">                           </text>
+    <rect x="269.0" y="57.67" fill="#21222c" width="256.12" height="19.35"/>
+    <text dy="-0.25em" x="269.0" y="75.9" textLength="251.1" class="termage-1" style="fill:#ffaf00">pytermgui.inspector.inspect</text>
+    <rect x="520.1" y="57.67" fill="#21222c" width="246.64" height="19.35"/>
+    <text dy="-0.25em" x="520.1" y="75.9" textLength="241.8" class="termage-1" style="fill:#d5d7e2">                          </text>
+    <rect x="761.9" y="57.67" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="761.9" y="75.9" textLength="18.6" class="termage-1" style="fill:#3f4350"> │</text>
+    <rect x="-0.7" y="76.65" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="-0.7" y="94.88" textLength="18.6" class="termage-1" style="fill:#3f4350">│ </text>
+    <rect x="17.9" y="76.65" fill="#21222c" width="47.43" height="19.35"/>
+    <text dy="-0.25em" x="17.9" y="94.88" textLength="46.5" class="termage-1" style="fill:#d5d7e2">     </text>
+    <rect x="64.4" y="76.65" fill="#21222c" width="104.35" height="19.35"/>
+    <text dy="-0.25em" x="64.4" y="94.88" textLength="102.3" class="termage-1" style="fill:#d5d7e2">Located in </text>
+    <rect x="166.7" y="76.65" fill="#21222c" width="559.67" height="19.35"/>
+    <text dy="-0.25em" x="166.7" y="94.88" textLength="548.7" class="termage-1" style="fill:#87afaf">/Users/lapis/Code/Projects/pytermgui/pytermgui/inspector.py</text>
+    <rect x="715.4" y="76.65" fill="#21222c" width="47.43" height="19.35"/>
+    <text dy="-0.25em" x="715.4" y="94.88" textLength="46.5" class="termage-1" style="fill:#d5d7e2">     </text>
+    <rect x="761.9" y="76.65" fill="#21222c" width="18.97" height="19.35"/>
+    <text dy="-0.25em" x="761.9" y="94.88" textLength="18.6" class="termage-1" style="fill:#3f4350"> │</text>
+    <rect x="-0.7" y="95.62" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="-0.7" y="113.85" textLength="9.3" class="termage-1" style="fill:#3f4350">└</text>
+    <rect x="8.6" y="95.62" fill="#21222c" width="777.85" height="19.35"/>
+    <text dy="-0.25em" x="8.6" y="113.85" textLength="762.6" class="termage-1" style="fill:#3f4350">──────────────────────────────────────────────────────────────────────────────────</text>
+    <rect x="771.2" y="95.62" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="771.2" y="113.85" textLength="9.3" class="termage-1" style="fill:#3f4350">┘</text>
+    <rect x="-0.7" y="114.6" fill="#21222c" width="28.46" height="19.35"/>
+    <text dy="-0.25em" x="-0.7" y="132.83" textLength="27.9" class="termage-1" style="fill:#ff5f5f">def</text>
+    <rect x="27.2" y="114.6" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="27.2" y="132.83" textLength="9.3" class="termage-1" style="fill:#d5d7e2"> </text>
+    <rect x="36.5" y="114.6" fill="#21222c" width="66.4" height="19.35"/>
+    <text dy="-0.25em" x="36.5" y="132.83" textLength="65.1" class="termage-1" style="fill:#87afaf">inspect</text>
+    <rect x="101.6" y="114.6" fill="#21222c" width="85.37" height="19.35"/>
+    <text dy="-0.25em" x="101.6" y="132.83" textLength="83.7" class="termage-1" style="fill:#d5d7e2">(target: </text>
+    <rect x="185.3" y="114.6" fill="#21222c" width="56.92" height="19.35"/>
+    <text dy="-0.25em" x="185.3" y="132.83" textLength="55.8" class="termage-1" style="fill:#ffaf00">object</text>
+    <rect x="241.1" y="114.6" fill="#21222c" width="189.72" height="19.35"/>
+    <text dy="-0.25em" x="241.1" y="132.83" textLength="186.0" class="termage-1" style="fill:#d5d7e2">, **inspector_args: </text>
+    <rect x="427.1" y="114.6" fill="#21222c" width="28.46" height="19.35"/>
+    <text dy="-0.25em" x="427.1" y="132.83" textLength="27.9" class="termage-1" style="fill:#ffaf00">Any</text>
+    <rect x="455.0" y="114.6" fill="#21222c" width="47.43" height="19.35"/>
+    <text dy="-0.25em" x="455.0" y="132.83" textLength="46.5" class="termage-1" style="fill:#d5d7e2">) -&gt; </text>
+    <rect x="501.5" y="114.6" fill="#21222c" width="85.37" height="19.35"/>
+    <text dy="-0.25em" x="501.5" y="132.83" textLength="83.7" class="termage-1" style="fill:#ffaf00">Inspector</text>
+    <rect x="585.2" y="114.6" fill="#21222c" width="9.49" height="19.35"/>
+    <text dy="-0.25em" x="585.2" y="132.83" textLength="9.3" class="termage-1" style="fill:#d5d7e2">:</text>
+    <rect x="594.5" y="114.6" fill="#21222c" width="189.72" height="19.35"/>
+    <text dy="-0.25em" x="594.5" y="132.83" textLength="186.0" class="termage-1" style="fill:#d5d7e2">                    </text>
+    <rect x="-0.7" y="133.57" fill="#21222c" width="37.94" height="19.35"/>
+    <text dy="-0.25em" x="-0.7" y="151.8" textLength="37.2" class="termage-1" style="fill:#d5d7e2">    </text>
+    <rect x="36.5" y="133.57" fill="#21222c" width="180.23" height="19.35"/>
+    <text dy="-0.25em" x="36.5" y="151.8" textLength="176.7" class="termage-1" style="fill:#878787">Inspects an object.</text>
+    <rect x="213.2" y="133.57" fill="#21222c" width="578.65" height="19.35"/>
+    <text dy="-0.25em" x="213.2" y="151.8" textLength="567.3" class="termage-1" style="fill:#d5d7e2">                                                             </text>
+    <rect x="-0.7" y="152.55" fill="#21222c" width="37.94" height="19.35"/>
+    <text dy="-0.25em" x="-0.7" y="170.78" textLength="37.2" class="termage-1" style="fill:#d5d7e2">    </text>
+    <rect x="36.5" y="152.55" fill="#21222c" width="758.88" height="19.35"/>
+    <text dy="-0.25em" x="36.5" y="170.78" textLength="744.0" class="termage-1" style="fill:#d5d7e2">                                                                                </text>
+    <rect x="-0.7" y="171.52" fill="#21222c" width="37.94" height="19.35"/>
+    <text dy="-0.25em" x="-0.7" y="189.75" textLength="37.2" class="termage-1" style="fill:#d5d7e2">    </text>
+    <rect x="36.5" y="171.52" fill="#21222c" width="47.43" height="19.35"/>
+    <text dy="-0.25em" x="36.5" y="189.75" textLength="46.5" class="termage-1" style="fill:#878787">Args:</text>
+    <rect x="83.0" y="171.52" fill="#21222c" width="711.45" height="19.35"/>
+    <text dy="-0.25em" x="83.0" y="189.75" textLength="697.5" class="termage-1" style="fill:#d5d7e2">                                                                           </text>
+    <rect x="-0.7" y="190.5" fill="#21222c" width="37.94" height="19.35"/>
+    <text dy="-0.25em" x="-0.7" y="208.73" textLength="37.2" class="termage-1" style="fill:#d5d7e2">    </text>
+    <rect x="36.5" y="190.5" fill="#21222c" width="322.52" height="19.35"/>
+    <text dy="-0.25em" x="36.5" y="208.73" textLength="316.2" class="termage-1" style="fill:#878787">    target: The object to inspect.</text>
+    <rect x="352.7" y="190.5" fill="#21222c" width="436.36" height="19.35"/>
+    <text dy="-0.25em" x="352.7" y="208.73" textLength="427.8" class="termage-1" style="fill:#d5d7e2">                                              </text>
+    <rect x="-0.7" y="209.47" fill="#21222c" width="37.94" height="19.35"/>
+    <text dy="-0.25em" x="-0.7" y="227.7" textLength="37.2" class="termage-1" style="fill:#d5d7e2">    </text>
+    <rect x="36.5" y="209.47" fill="#21222c" width="445.84" height="19.35"/>
+    <text dy="-0.25em" x="36.5" y="227.7" textLength="437.1" class="termage-1" style="fill:#878787">    **inspector_args: See `Inspector.__init__`.</text>
+    <rect x="473.6" y="209.47" fill="#21222c" width="313.04" height="19.35"/>
+    <text dy="-0.25em" x="473.6" y="227.7" textLength="306.9" class="termage-1" style="fill:#d5d7e2">                                 </text>
+    <rect x="-0.7" y="228.45" fill="#21222c" width="398.41" height="19.35"/>
+    <text dy="-0.25em" x="-0.7" y="246.68" textLength="390.6" class="termage-1" style="fill:#d5d7e2">                                          </text>
+    <rect x="389.9" y="228.45" fill="#21222c" width="398.41" height="19.35"/>
+    <text dy="-0.25em" x="389.9" y="246.68" textLength="390.6" class="termage-1" style="fill:#d5d7e2">                                          </text>
+    <rect x="-0.7" y="247.42" fill="#21222c" width="398.41" height="19.35"/>
+    <text dy="-0.25em" x="-0.7" y="265.65" textLength="390.6" class="termage-1" style="fill:#d5d7e2">                                          </text>
+    <rect x="389.9" y="247.42" fill="#21222c" width="398.41" height="19.35"/>
+    <text dy="-0.25em" x="389.9" y="265.65" textLength="390.6" class="termage-1" style="fill:#d5d7e2">                                          </text>
+    <rect x="-0.7" y="266.4" fill="#21222c" width="398.41" height="19.35"/>
+    <text dy="-0.25em" x="-0.7" y="284.62" textLength="390.6" class="termage-1" style="fill:#d5d7e2">                                          </text>
+    <rect x="389.9" y="266.4" fill="#21222c" width="398.41" height="19.35"/>
+    <text dy="-0.25em" x="389.9" y="284.62" textLength="390.6" class="termage-1" style="fill:#d5d7e2">                                          </text>
+</g></p>
 </div>
 </div>
 </div>
+<p></svg></p>
 
 <!-- Source file information -->
 
@@ -497,7 +1002,7 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": ["content.code.annotate"], "search": "assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "content.code.annotate"], "search": "assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
       <script src="assets/javascripts/bundle.a6c66575.min.js"></script>
