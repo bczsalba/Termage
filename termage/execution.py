@@ -18,9 +18,15 @@ DEFAULT_HEIGHT = 24
 
 
 def format_codeblock(block: str) -> tuple[str, str]:
+    """Formats a codeblock into display and executed lines."""
+
     disp_lines, exec_lines = [], []
 
-    for line in block.splitlines():
+    lines = block.splitlines()
+    indent = " " * (len(lines[0]) - len(lines[0].lstrip()))
+
+    for line in lines:
+        line = line.replace(indent, "", 1)
         if line.startswith("&"):
             exec_lines.append(line[1:])
             continue
@@ -32,14 +38,22 @@ def format_codeblock(block: str) -> tuple[str, str]:
 
 
 class TermageNamespace:
+    """A simple namespace for exec globals, exposed as `termage`."""
+
     @property
     def terminal(self) -> ptg.Terminal:
+        """Returns the current terminal object."""
+
         return ptg.get_terminal()
 
     def fit(self, widget: ptg.Widget) -> None:
+        """Fits the output terminal around the given widget."""
+
         self.terminal.size = widget.width, widget.height
 
     def resize(self, width: int, height: int) -> None:
+        """Resizes the output terminal to the given dimensions."""
+
         self.terminal.size = width, height
 
 
@@ -126,7 +140,7 @@ def execute(
 
     if highlight:
         print(ptg.tim.parse(ptg.highlight_python(code)))
-        return
+        return exec_globals
 
     exec(code, exec_globals)
 
@@ -146,7 +160,7 @@ def set_colors(foreground: str | None, background: str | None) -> None:
         ptg.Color.default_background = ptg.str_to_color(background)
 
 
-def termage(
+def termage(  # pylint: disable=too-many-arguments
     code: str = "",
     include: str | Path | None = None,
     width: int | None = None,
@@ -155,6 +169,7 @@ def termage(
     chrome: bool = True,
     foreground: str | None = None,
     background: str | None = None,
+    highlight_only: bool = False,
     save_as: str | Path | None = None,
 ) -> str:
     """Executes CLI with the given (long-form) arguments.
@@ -168,16 +183,16 @@ def termage(
 
     set_colors(foreground, background)
     if include is not None:
-        with open(include, "r") as includefile:
+        with open(include, "r", encoding="utf-8") as includefile:
             code = includefile.read() + code
 
     with patched_stdout_recorder(width, height) as recording:
-        execute(code=code)
+        execute(code=code, highlight=highlight_only)
 
     export = recording.export_svg(title=title, chrome=chrome)
 
     if save_as is not None:
-        with open(save_as, "w") as save:
+        with open(save_as, "w", encoding="utf-8") as save:
             save.write(export)
 
     return export
