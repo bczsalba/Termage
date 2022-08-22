@@ -1,39 +1,28 @@
-"""A mkdocs plugin, implementing Termage."""
-
 from __future__ import annotations
 
-import os
 import re
-import sys
-from pathlib import Path
-from dataclasses import dataclass, fields
+import os
+import tempfile
 from typing import Match
+from pathlib import Path
+from dataclasses import dataclass
 
+from mkdocs.livereload import LiveReloadServer
 from mkdocs.plugins import BasePlugin
 from mkdocs.config.config_options import Type
-from mkdocs.structure.files import Files, File
 
-from .execution import patched_stdout_recorder, execute, set_colors
+from .execution import execute, format_codeblock, patched_stdout_recorder, set_colors
 
-RE_BLOCK = re.compile(r"([^\n]*)\`\`\`termage(-svg)?(.*?)\n([\s\S]*?)\`\`\`")
-
-OUTPUT_BLOCK_TEMPLATE = """
-=== "{code_tab_name}"
-
-    ```py {extra_opts}
+RE_BLOCK = re.compile(r"(([^\n]*)\`\`\`termage(-svg)?(.*?)\n([\s\S]*?)\`\`\`)")
+TAB_TEMPLATE = """
+=== "{code_tab}"
+    ```python {extra_opts}
 {code}
     ```
 
-=== "{svg_tab_name}"
-{svg}
+=== "{svg_tab}"
+    {content}
 """
-
-STDOUT_WRITE = sys.stdout.write
-
-OUTPUT_SVG_TEMPLATE = """\
-{indent}<p align="center">
-{indent}<img src="{src}" alt="{alt}" {style}>
-{indent}</p>"""
 
 OPTS = [
     "width",
@@ -46,6 +35,15 @@ OPTS = [
     "include",
     "highlight",
 ]
+
+
+def indent(text: str, amount: int) -> str:
+    """Indents the text by the given amount.
+
+    Works multiline too!"""
+
+    pad = amount * " "
+    return "\n".join(pad + line for line in text.splitlines())
 
 
 @dataclass
@@ -66,13 +64,8 @@ class TermageOptions:
 class TermagePlugin(BasePlugin):
     """An mkdocs plugin for Termage."""
 
-    """
-    termage:
-        path: "docs/assets"
-        template: "termage_{count}.svg"
-    """
-
     config_scheme = (
+        ("write_files", Type(bool, default=False)),
         ("path", Type(str, default="assets")),
         ("name_template", Type(str, default="termage_{count}.svg")),
         ("background", Type(str, default="#212121")),
@@ -91,8 +84,6 @@ class TermagePlugin(BasePlugin):
     def _get_next_path(self, title: str | None) -> str:
         """Gets the next SVG path."""
 
-        self._svg_count += 1
-
         base = self.config["path"]
         name_template = self.config["name_template"]
         name = name_template.format(
@@ -102,7 +93,7 @@ class TermagePlugin(BasePlugin):
 
         return f"{base}/{name}"
 
-    def _parse_opts(self, options: str) -> TermageOptions:
+    def parse_options(self, options: str) -> TermageOptions:
         """Parses the options given to a block."""
 
         opt_dict = {key: self.config.get(key, None) for key in OPTS}
@@ -139,88 +130,82 @@ class TermagePlugin(BasePlugin):
 
         return TermageOptions(**opt_dict), extra_opts  # type: ignore
 
-    def _replace_codeblock(self, matchobj: Match) -> str:
-        """Replaces a codeblock with Termage content."""
+    def replace(self, matchobj: Match) -> str:
+        full, indentation, svg_only, options, code = matchobj.groups()
+        indent_len = len(indentation)
 
-        indent, svg_only, options, code = matchobj.groups()
+        if indentation.endswith("\\"):
+            return full
 
-        if indent.endswith("\\"):
-            indent = indent.replace("\\", "")
-            return f"""\
-{indent}```termage{svg_only or ''}{options}
-{code}```"""
-
-        opts, extra_opts = self._parse_opts(options)
+        opts, extra_opts = self.parse_options(options)
+        set_colors(opts.foreground, opts.background)
 
         if opts.include is not None:
-            with open(opts.include, "r", encoding="utf-8") as include_file:
-                include = ""
-                for line in include_file.readlines():
-                    include += f"{indent}{line}"
+            with open(opts.include, "r") as includefile:
+                code = includefile.read() + code
 
-                code = include + code
+            opts.title = opts.title or opts.include
 
-            if opts.title is None:
-                opts.title = opts.include
+        code_disp, code_exec = format_codeblock(code)
+        code_exec = "\n".join(
+            line.replace(indentation, "", 1) for line in code_exec.splitlines()
+        )
 
-        exec_code = ""
-        display_code = []
+        with patched_stdout_recorder(opts.width, opts.height) as recording:
+            glob = execute(code=code_exec)
 
-        for line in code.splitlines():
-            line = line[len(indent) :]
+        svg = (
+            recording.export_svg(
+                title=opts.title,
+                chrome=opts.chrome,
+                prefix=f"termage-{self._svg_count}-",
+                inline_styles=True,
+            )
+            .replace("_", "\_")
+            .replace("`", r"\`")
+            .replace("*", r"\*")
+        )
+        self._svg_count += 1
+        style = "margin-top: -1em;" if not opts.chrome else ""
 
-            if line.startswith("&"):
-                line = line.replace("&", "", 1)
-            else:
-                display_code.append(line)
+        if self.config["write_files"]:
+            filepath = self._get_next_path(opts.title)
+            with open(Path("docs") / filepath, "w") as export:
+                export.write(svg)
 
-            exec_code += line + "\n"
-
-        set_colors(opts.foreground, opts.background)
-        with patched_stdout_recorder(opts.width, opts.height) as recorder:
-            execute(module=None, code=exec_code, highlight=opts.highlight)
-
-        name = self._get_next_path(title=opts.title)
-        path = Path("docs") / name
-        export = recorder.export_svg(title=opts.title, chrome=opts.chrome)
-
-        existing = ""
-        if os.path.exists(path):
-            with open(path, "r") as existing_file:
-                existing = existing_file.read()
-
-        if existing != export:
-            with open(path, "w") as new:
-                new.write(export)
-
-        # Point the filename back to root
-        name = "/" + name
-
-        style = 'style="margin-top: -1em;"' if not opts.chrome else ""
-
-        if svg_only:
-            return OUTPUT_SVG_TEMPLATE.format(
-                indent=indent, alt=opts.title, src=name, style=style
+            img_tag = (
+                f"<img alt='{opts.title}' src='/{filepath}' style='{style}'></img>"
             )
 
-        # Re-indent template to match original indentation
-        template = ""
-        for line in OUTPUT_BLOCK_TEMPLATE.splitlines():
-            if line not in ("{code}", "{svg}"):
-                line = indent + line
+            if svg_only:
+                return img_tag
 
-            template += line + "\n"
+            return indent(
+                TAB_TEMPLATE.format(
+                    code_tab=opts.tabs[0],
+                    extra_opts=extra_opts,
+                    svg_tab=opts.tabs[1],
+                    code=indent(code_disp, amount=4),
+                    content=img_tag,
+                ),
+                amount=indent_len,
+            )
 
-        indent += 4 * " "
+        if style != "":
+            svg = svg[: len("<svg ")] + f"style='{style}' " + svg[len("<svg ") :]
 
-        return template.format(
-            extra_opts=extra_opts,
-            code_tab_name=opts.tabs[0],
-            svg_tab_name=opts.tabs[1],
-            code="\n".join(indent + line for line in display_code),
-            svg=OUTPUT_SVG_TEMPLATE.format(
-                indent=indent, alt=opts.title, src=name, style=style
+        if svg_only:
+            return svg
+
+        return indent(
+            TAB_TEMPLATE.format(
+                code_tab=opts.tabs[0],
+                extra_opts=extra_opts,
+                svg_tab=opts.tabs[1],
+                code=indent(code_disp, amount=4),
+                content=indent(svg, amount=indent_len),
             ),
+            amount=indent_len,
         )
 
     def on_page_markdown(  # pylint: disable=unused-argument
@@ -228,4 +213,4 @@ class TermagePlugin(BasePlugin):
     ) -> str:
         """Replaces the termage markdown syntax."""
 
-        return RE_BLOCK.sub(self._replace_codeblock, markdown)
+        return RE_BLOCK.sub(self.replace, markdown)
