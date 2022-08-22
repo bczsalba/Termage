@@ -77,6 +77,12 @@ def _process_args(argv: list[str] | None) -> Namespace:
     )
 
     parser.add_argument(
+        "--highlight-only",
+        action="store_true",
+        help="Highlights the given code, instead of running it.",
+    )
+
+    parser.add_argument(
         "--run",
         metavar="FILE",
         type=Path,
@@ -121,6 +127,7 @@ def main(argv: list[str] | None = None, *, no_print: bool = False) -> None:
         foreground=args.fg,
         background=args.bg,
         save_as=args.out,
+        highlight_only=args.highlight_only,
     )
 
     if args.out is None:
