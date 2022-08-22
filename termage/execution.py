@@ -104,7 +104,7 @@ def execute(
     code: str | None = None,
     highlight: bool = None,
     *,
-    exec_globals: dict[str, Any] = EXEC_GLOBALS
+    exec_globals: dict[str, Any] = EXEC_GLOBALS,
 ) -> None:
     """Executes the given code."""
 
@@ -132,6 +132,8 @@ def execute(
 
     if "manager" in exec_globals:
         exec_globals["manager"].compositor.draw()
+
+    return exec_globals
 
 
 def set_colors(foreground: str | None, background: str | None) -> None:
