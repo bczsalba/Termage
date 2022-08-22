@@ -17,6 +17,20 @@ DEFAULT_WIDTH = 80
 DEFAULT_HEIGHT = 24
 
 
+def format_codeblock(block: str) -> tuple[str, str]:
+    disp_lines, exec_lines = [], []
+
+    for line in block.splitlines():
+        if line.startswith("&"):
+            exec_lines.append(line[1:])
+            continue
+
+        exec_lines.append(line)
+        disp_lines.append(line)
+
+    return "\n".join(disp_lines), "\n".join(exec_lines)
+
+
 class TermageNamespace:
     @property
     def terminal(self) -> ptg.Terminal:
@@ -128,3 +142,40 @@ def set_colors(foreground: str | None, background: str | None) -> None:
 
     if background is not None:
         ptg.Color.default_background = ptg.str_to_color(background)
+
+
+def termage(
+    code: str = "",
+    include: str | Path | None = None,
+    width: int | None = None,
+    height: int | None = None,
+    title: str = "",
+    chrome: bool = True,
+    foreground: str | None = None,
+    background: str | None = None,
+    save_as: str | Path | None = None,
+) -> str:
+    """Executes CLI with the given (long-form) arguments.
+
+    To see all arguments, check out the docs.
+
+    Returns:
+        The generated SVG if the `out` parameter is not given, else
+        None, after writing output to `out`.
+    """
+
+    set_colors(foreground, background)
+    if include is not None:
+        with open(include, "r") as includefile:
+            code = includefile.read() + code
+
+    with patched_stdout_recorder(width, height) as recording:
+        execute(code=code)
+
+    export = recording.export_svg(title=title, chrome=chrome)
+
+    if save_as is not None:
+        with open(save_as, "w") as save:
+            save.write(export)
+
+    return export

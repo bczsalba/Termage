@@ -9,7 +9,13 @@ import sys
 from pathlib import Path
 from argparse import ArgumentParser, Namespace
 
-from .execution import patched_stdout_recorder, execute, set_colors
+from .execution import (
+    execute,
+    format_codeblock,
+    patched_stdout_recorder,
+    termage,
+    set_colors,
+)
 
 
 def _process_args(argv: list[str] | None) -> Namespace:
@@ -64,12 +70,6 @@ def _process_args(argv: list[str] | None) -> Namespace:
     )
 
     parser.add_argument(
-        "--highlight",
-        action="store_true",
-        help="Highlights the given code, instead of running it.",
-    )
-
-    parser.add_argument(
         "--chrome",
         choices=["show", "hide"],
         default="show",
@@ -97,11 +97,12 @@ def main(argv: list[str] | None = None, *, no_print: bool = False) -> None:
     if args.run:
         with open(args.run, "r") as runfile:
             # TODO: This should be done in a central location
-            code = runfile.read().replace("&", "")
+            code_disp, code_exec = format_codeblock(runfile.read())
             from pytermgui import highlight_python, tim
 
-            tim.print(highlight_python(code))
-            execute(code=code)
+            tim.print(highlight_python(code_exec))
+            print()
+            execute(code=code_exec)
         return
 
     if args.code is None and not sys.stdin.isatty():
@@ -110,23 +111,20 @@ def main(argv: list[str] | None = None, *, no_print: bool = False) -> None:
     args.code = args.code or ""
     args.title = args.title or ""
 
-    set_colors(args.fg, args.bg)
-
-    with patched_stdout_recorder(args.width, args.height) as recorder:
-        execute(args.module, args.file, args.code, args.highlight)
+    export = termage(
+        code=args.code,
+        include=args.file,
+        width=args.width,
+        height=args.height,
+        title=args.title,
+        chrome=args.chrome.lower() == "show",
+        foreground=args.fg,
+        background=args.bg,
+        save_as=args.out,
+    )
 
     if args.out is None:
-        content = recorder.export_svg(title=args.title, inline_styles=True)
-
-        if no_print:
-            return content
-
-        print(content)
-        return
-
-    recorder.save_svg(
-        args.out, title=args.title, chrome=args.chrome == "show", inline_styles=True
-    )
+        print(export)
 
 
 if __name__ == "__main__":
