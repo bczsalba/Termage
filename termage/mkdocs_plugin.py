@@ -1,13 +1,10 @@
 from __future__ import annotations
 
 import re
-import os
-import tempfile
 from typing import Match
 from pathlib import Path
 from dataclasses import dataclass
 
-from mkdocs.livereload import LiveReloadServer
 from mkdocs.plugins import BasePlugin
 from mkdocs.config.config_options import Type
 
@@ -47,7 +44,7 @@ def indent(text: str, amount: int) -> str:
 
 
 @dataclass
-class TermageOptions:
+class TermageOptions:  # pylint: disable=too-many-instance-attributes
     """Options passed into the Termage plugin."""
 
     title: str
@@ -65,9 +62,12 @@ class TermagePlugin(BasePlugin):
     """An mkdocs plugin for Termage."""
 
     config_scheme = (
+        # File configuration
         ("write_files", Type(bool, default=False)),
+        ("inline_styles", Type(bool, default=True)),
         ("path", Type(str, default="assets")),
         ("name_template", Type(str, default="termage_{count}.svg")),
+        # SVG content configuration
         ("background", Type(str, default="#212121")),
         ("foreground", Type(str, default="#dddddd")),
         ("tabs", Type(list, default=["Python", "Output"])),
@@ -130,47 +130,56 @@ class TermagePlugin(BasePlugin):
 
         return TermageOptions(**opt_dict), extra_opts  # type: ignore
 
-    def replace(self, matchobj: Match) -> str:
+    def replace(self, matchobj: Match) -> str:  # pylint: disable=too-many-locals
+        """Replaces a code block match with a generated SVG."""
+
         full, indentation, svg_only, options, code = matchobj.groups()
         indent_len = len(indentation)
 
         if indentation.endswith("\\"):
-            return full
+            return full.replace(r"\`", "`", 1)
 
         opts, extra_opts = self.parse_options(options)
         set_colors(opts.foreground, opts.background)
 
         if opts.include is not None:
-            with open(opts.include, "r") as includefile:
-                code = includefile.read() + code
+            with open(opts.include, "r", encoding="utf-8") as includefile:
+                included = ""
+                for line in includefile:
+                    if line.startswith("&"):
+                        included += "&" + indentation + line[1:]
+                        continue
+
+                    included += indentation + line
+
+                code = included + code
 
             opts.title = opts.title or opts.include
 
         code_disp, code_exec = format_codeblock(code)
-        code_exec = "\n".join(
-            line.replace(indentation, "", 1) for line in code_exec.splitlines()
-        )
 
         with patched_stdout_recorder(opts.width, opts.height) as recording:
-            glob = execute(code=code_exec)
+            execute(code=code_exec)
 
         svg = (
             recording.export_svg(
                 title=opts.title,
                 chrome=opts.chrome,
-                prefix=f"termage-{self._svg_count}-",
-                inline_styles=True,
+                prefix=f"termage-{self._svg_count}",
+                inline_styles=self.config["inline_styles"],
             )
-            .replace("_", "\_")
+            .replace("_", r"\_")
             .replace("`", r"\`")
             .replace("*", r"\*")
         )
+
         self._svg_count += 1
         style = "margin-top: -1em;" if not opts.chrome else ""
 
         if self.config["write_files"]:
             filepath = self._get_next_path(opts.title)
-            with open(Path("docs") / filepath, "w") as export:
+
+            with open(Path("docs") / filepath, "w", encoding="utf-8") as export:
                 export.write(svg)
 
             img_tag = (
@@ -195,7 +204,7 @@ class TermagePlugin(BasePlugin):
             svg = svg[: len("<svg ")] + f"style='{style}' " + svg[len("<svg ") :]
 
         if svg_only:
-            return svg
+            return indent(svg, indent_len)
 
         return indent(
             TAB_TEMPLATE.format(
@@ -203,7 +212,7 @@ class TermagePlugin(BasePlugin):
                 extra_opts=extra_opts,
                 svg_tab=opts.tabs[1],
                 code=indent(code_disp, amount=4),
-                content=indent(svg, amount=indent_len),
+                content=svg,
             ),
             amount=indent_len,
         )
