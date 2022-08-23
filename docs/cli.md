@@ -20,11 +20,11 @@ docs/src/source.py
 
 === "Code output"
     ```
-    termage source.py --title="Welcome to the Termage CLI!"
+    termage docs/source.py --title="Welcome to the Termage CLI!"
     ```
 
 
-    ```termage-svg include=docs/src/source.py title=Welcome\ to\ to\ Termage\ CLI!
+    ```termage-svg include=docs/src/source.py title=Welcome\ to\ the\ Termage\ CLI! height=12
     ```
 
 === "Code highlighting"
@@ -33,7 +33,7 @@ docs/src/source.py
     ```
 
 
-    ```termage-svg include=docs/src/source.py title=Welcome\ to\ to\ Termage\ CLI! highlight=1 height=12
+    ```termage-svg include=docs/src/source.py title=Welcome\ to\ the\ Termage\ CLI! highlight=1 height=10
     ```
 
 
