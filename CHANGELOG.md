@@ -1,3 +1,11 @@
+## [0.6.1] - 2022-08-23
+
+### Bugfixes
+
+- Fix `highlight` option not having an effect in the plugin
+
+<!-- HATCH README END -->
+
 ## [0.6.0] - 2022-08-22
 
 ### Additions
@@ -9,8 +17,6 @@
 - Unify the codeblock-formatting API under `execution.format_codeblock`
 - Rewrite & refactor most of the plugin to be more maintainable
 - Refactor the Python API so that the `termage` function is called by the CLI, not the other way around.
-
-<!-- HATCH README END -->
 
 
 ## [0.5.0] - 2022-08-16
@@ -75,6 +81,7 @@
 
 
 <!-- HATCH URI DEFINITIONS START -->
+[0.6.1]: https://github.com/bczsalba/termage/compare/0.6.0...0.6.1
 [0.6.0]: https://github.com/bczsalba/termage/compare/0.5.0...0.6.0
 [0.5.0]: https://github.com/bczsalba/termage/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/bczsalba/termage/compare/0.3.2...0.4.0
