@@ -161,7 +161,7 @@ class TermagePlugin(BasePlugin):
         code_disp, code_exec = format_codeblock(code)
 
         with patched_stdout_recorder(opts.width, opts.height) as recording:
-            execute(code=code_exec)
+            execute(code=code_exec, highlight=opts.highlight)
 
         svg = (
             recording.export_svg(
