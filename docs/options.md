@@ -14,7 +14,7 @@ Write files during generation, instead of inserting their contents directly into
 
 **Default**: `False`
 
-### `inline_style`
+### `inline_styles`
 
 <!-- TODO: Add reference link when available -->
 Controls the PyTermGUI SVG export option of the same name. When set, element styles will be applied as `style=` attributes, instead of as classes defined earlier in the export.

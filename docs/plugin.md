@@ -36,9 +36,10 @@ Additionally, you must also activate the plugin:
 plugins:
   - termage:
       # Default config options
+      write_files: False
+      inline_styles: True
       name_template: "termage_{count}.svg"
       path: "assets"
-      name_template: "termage_{count}.svg"
       background: "#212121"
       foreground: "#dddddd"
       tabs: ["Python", "Output"]
