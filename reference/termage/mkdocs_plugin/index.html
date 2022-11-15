@@ -976,7 +976,9 @@
 <span class="normal">224</span>
 <span class="normal">225</span>
 <span class="normal">226</span>
-<span class="normal">227</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TermagePlugin</span><span class="p">(</span><span class="n">BasePlugin</span><span class="p">):</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TermagePlugin</span><span class="p">(</span><span class="n">BasePlugin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;An mkdocs plugin for Termage.&quot;&quot;&quot;</span>
 
     <span class="n">config_scheme</span> <span class="o">=</span> <span class="p">(</span>
@@ -1045,6 +1047,8 @@
                 <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
 
             <span class="n">opt_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="n">opt_dict</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">opt_dict</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
 
         <span class="k">return</span> <span class="n">TermageOptions</span><span class="p">(</span><span class="o">**</span><span class="n">opt_dict</span><span class="p">),</span> <span class="n">extra_opts</span>  <span class="c1"># type: ignore</span>
 
@@ -1199,12 +1203,12 @@
 
       <details class="quote">
         <summary>Source code in <code>termage/mkdocs_plugin.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">222</span>
-<span class="normal">223</span>
-<span class="normal">224</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">224</span>
 <span class="normal">225</span>
 <span class="normal">226</span>
-<span class="normal">227</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">on_page_markdown</span><span class="p">(</span>  <span class="c1"># pylint: disable=unused-argument</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">on_page_markdown</span><span class="p">(</span>  <span class="c1"># pylint: disable=unused-argument</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">markdown</span><span class="p">,</span> <span class="n">page</span><span class="p">,</span> <span class="n">files</span><span class="p">,</span> <span class="n">config</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Replaces the termage markdown syntax.&quot;&quot;&quot;</span>
@@ -1267,7 +1271,9 @@
 <span class="normal">130</span>
 <span class="normal">131</span>
 <span class="normal">132</span>
-<span class="normal">133</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">parse_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TermageOptions</span><span class="p">:</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">parse_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TermageOptions</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Parses the options given to a block.&quot;&quot;&quot;</span>
 
     <span class="n">opt_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">OPTS</span><span class="p">}</span>
@@ -1302,6 +1308,8 @@
 
         <span class="n">opt_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
+    <span class="n">opt_dict</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">opt_dict</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+
     <span class="k">return</span> <span class="n">TermageOptions</span><span class="p">(</span><span class="o">**</span><span class="n">opt_dict</span><span class="p">),</span> <span class="n">extra_opts</span>  <span class="c1"># type: ignore</span>
 </code></pre></div></td></tr></table></div>
       </details>
@@ -1325,9 +1333,7 @@
 
       <details class="quote">
         <summary>Source code in <code>termage/mkdocs_plugin.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">137</span>
 <span class="normal">138</span>
 <span class="normal">139</span>
 <span class="normal">140</span>
@@ -1410,7 +1416,9 @@
 <span class="normal">217</span>
 <span class="normal">218</span>
 <span class="normal">219</span>
-<span class="normal">220</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">replace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matchobj</span><span class="p">:</span> <span class="n">Match</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>  <span class="c1"># pylint: disable=too-many-locals</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">replace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matchobj</span><span class="p">:</span> <span class="n">Match</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>  <span class="c1"># pylint: disable=too-many-locals</span>
     <span class="sd">&quot;&quot;&quot;Replaces a code block match with a generated SVG.&quot;&quot;&quot;</span>
 
     <span class="n">full</span><span class="p">,</span> <span class="n">indentation</span><span class="p">,</span> <span class="n">svg_only</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">code</span> <span class="o">=</span> <span class="n">matchobj</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
